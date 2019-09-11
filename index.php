@@ -2,23 +2,27 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Rand() + CSS (no inline styles)</title>
+        <title>bomba</title>
         <style>
-            body {
-                background-color: rgb(<?php print rand(1, 225) . ',' . rand(1, 225) . ',' . rand(1, 225) ?>);
+
+            .bomba {
+                background-image: url('https://storage.needpix.com/rsynced_images/atomic-bomb-2026117_1280.png');
+                background-size: contain;
+                width: 1<?php print date('s'); ?>px;                  
+                height: 1<?php print date('s'); ?>px;
+                background-position: center;
+                background-repeat: no-repeat;
             }
-            
-            h1 {
-                font-size: <?php print rand(10, 100); ?>px;
+
+            .time-00 {
+                background-image: url('https://image.shutterstock.com/image-illustration/nuclear-bomb-explosion-mushroom-cloud-260nw-1083546056.jpg');   
             }
-            
-            p {
-                color: rgb(<?php print rand(1, 225) . ',' . rand(1, 225) . ',' . rand(1, 225) ?>); 
-            }
+
         </style>
     </head>
     <body>
-        <h1>Aš keičiu dydį!</h1>
-        <p>Aš keičiu savo spalvą!</p>
+        <div class="bomba time-<?php print date('s'); ?>"></div>
+
+        <h1><?php print date('s'); ?> </h1>
     </body>
 </html>
