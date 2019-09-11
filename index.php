@@ -2,14 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Rand() + CSS</title>
+        <title>Rand() + CSS (no inline styles)</title>
+        <style>
+            body {
+                background-color: rgb(<?php print rand(1, 225) . ',' . rand(1, 225) . ',' . rand(1, 225) ?>);
+            }
+            
+            h1 {
+                font-size: <?php print rand(10, 100); ?>px;
+            }
+            
+            p {
+                color: rgb(<?php print rand(1, 225) . ',' . rand(1, 225) . ',' . rand(1, 225) ?>); 
+            }
+        </style>
     </head>
-    <body style="background-color: rgb(<?php print rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255); ?>)">
-        <h1 style="font-size: <?php print rand(10, 30) . 'px'; ?>">
-            Aš keičiu savo dydį!
-        </h1>
-        <p style="color: rgb(<?php print rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255); ?>)">
-            Aš keičiu savo spalvą!
-        </p>
+    <body>
+        <h1>Aš keičiu dydį!</h1>
+        <p>Aš keičiu savo spalvą!</p>
     </body>
 </html>
