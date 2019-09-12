@@ -1,6 +1,9 @@
 <?php
 
-$img = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+$skola1 = rand(1,100);
+$skola2 = rand(101,200);
+$skola3 = rand(201,300);
+$skola4 = rand(301,400);
 
 ?>
 <html>
@@ -8,12 +11,12 @@ $img = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=co
         <title>paveiksliukai</title>  
     </head>
     <body>
-        <ul>
-            <ol><img src="<?php print $img; ?>"></ol>
-            <ol><img src="<?php print $img; ?>"></ol>
-            <ol><img src="<?php print $img; ?>"></ol>
-            <ol><img src="<?php print $img; ?>"></ol>
-        </ul>
+        <div class="container">
+            <h1>Skolos skaičiuoklė</h1>
+            <h3>Jei pasiskolinai <?php print $skola1; ?> eurų</h3>
+            <h3>Grąžinti skolą <?php print $skola3; ?> eurų</h3>
+            <h3>Grąžinti skolą <?php print $skola2; ?> eurų</h3>
+        </div>
     </body>
 
 </html>
