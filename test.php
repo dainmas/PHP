@@ -1,14 +1,31 @@
 <?php
-date_default_timezone_set('Europe/Vilnius');
-//print date('l H:i:s');
-print date('Y-m-d', strtotime('-1 year'));
+$time = date('s');
+$time_reversed = 59 - $time;
+$title = 'Bomba pačios sukurta';
 ?>
 <html>
     <head>
-        <title>Aš, <?php print date('l'). 'ir PHP';?></title>
+        <title><?php print $title; ?></title>
+        <style>
+            .bomba{
+                width: 1<?php print $time; ?>px;
+                height: 1<?php print $time; ?>px;
+                border-radius: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
+                margin: auto;  
+            }
+
+            .time-0{
+                background-color: red;
+            }
+
+        </style>
     </head>
     <body>
-        <h1>Dainora - HTML  <?php print 'ir PHP';?> asė jau nuo <?php print date('Y-M-d') . ' metų';?></h1>
-        <p>Viskas prasidėjo  <?php print date('m') . ' mėnesio,' . date('d'). ' dieną!';?></p>
+        <div class=" bomba time-<?php print $time_reversed; ?>">
+            <h1><?php print $time_reversed; ?></h1>
+        </div>
     </body>
 </html>
