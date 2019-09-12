@@ -8,14 +8,14 @@ $skola4 = rand(301,400);
 ?>
 <html>
     <head>
-        <title>paveiksliukai</title>  
+        <title>skola</title>  
     </head>
     <body>
         <div class="container">
             <h1>Skolos skaičiuoklė</h1>
-            <h3>Jei pasiskolinai <?php print $skola1; ?> eurų</h3>
-            <h3>Grąžinti skolą <?php print $skola3; ?> eurų</h3>
-            <h3>Grąžinti skolą <?php print $skola2; ?> eurų</h3>
+            <h3>Jei pasiskolinai <?php print $skola1; ?> eurų,</h3>
+            <h3>Skolos grąžinimo planas 1: <?php print $skola3; ?> eurų.</h3>
+            <h3>Skolos grąžinimo planas 2: <?php print $skola2; ?> eurų.</h3>
         </div>
     </body>
 
