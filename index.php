@@ -1,22 +1,17 @@
 <?php
 
-$skola1 = rand(1,100);
-$skola2 = rand(101,200);
-$skola3 = rand(201,300);
-$skola4 = rand(301,400);
-
+$siuksliadezes_turis = 40;
+$siuksliu_turis_per_d = 15;
+$max_kaupo_turis = rand(45, 55);
+$d = $max_kaupo_turis / $siuksliu_turis_per_d;
+$date = date('Y-m-d', strtotime('+' . $d . 'days'));
+ 
 ?>
 <html>
     <head>
-        <title>Skola</title>  
+        <title>Šiukšlės</title>  
     </head>
     <body>
-        <div class="container">
-            <h1>Skolos skaičiuoklė</h1>
-            <h3>Jei pasiskolinai <?php print $skola1; ?> eurų,</h3>
-            <h3>Jei skola grąžinima per 2 metus, grąžinti: <?php print $skola3; ?> eurų.</h3>
-            <h3>Jei skola grąžinima per 1 metus, grąžinti: <?php print $skola2; ?> eurų.</h3>
-        </div>
+        <p>Po <?php print round($d, 0) . ' dienų' . ' ' . $date; ?> daryk ką nors, kad išvengtum konflikto.</p>
     </body>
-
 </html>
