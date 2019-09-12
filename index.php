@@ -1,22 +1,26 @@
 
+<?php
+$string = 'Saule teka rytuose';
+$int = 1;
+$bool = 'false';
+$null = null;
+
+?>
 <html>
+
     <head>
-        <meta charset="UTF-8">
-        <title>Bomb img game, and date()</title>
-        <style>
-            .bomb-img {
-                background-image: url(http://pngimg.com/uploads/bomb/bomb_PNG16.png);
-                background-size: cover;
-                width: 1<?php print date('s'); ?>px;
-                height: 1<?php print date('s'); ?>px;
-            }
-        </style>
+
+        <title>KIntamieji</title>  
     </head>
     <body>
-        <div class="bomb-img"></div>
-        <div><?php print date('s'); ?></div>
+
+        <ul>
+            <li><?php print $string; ?></li>
+            <li><?php print $int; ?></li>
+            <li><?php print $bool; ?></li>
+            <li><?php print $null; ?></li>
+
+        </ul>
     </body>
+
 </html>
-
-
-
