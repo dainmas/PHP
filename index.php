@@ -1,20 +1,19 @@
 
 <?php
-$string = 'Saule teka rytuose';
-$int = 1;
-$bool = true;
-$null = null;
+
+$img = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
 ?>
 <html>
     <head>
-        <title>Kintamieji</title>  
+        <title>paveiksliukai</title>  
     </head>
     <body>
         <ul>
-            <li>Stringo tipas: <?php print $string; ?></li>
-            <li>Integer tipas: <?php print $int; ?></li>
-            <li>Booleano tipas: <?php print $bool; ?></li>
-            <li>Null tipas: <?php print $null; ?></li>
+            <li><img src="<?php print $img; ?>"</li>
+            <li><img src="<?php print $img; ?>"</li>
+            <li><img src="<?php print $img; ?>"</li>
+            <li><img src="<?php print $img; ?>"</li>
         </ul>
     </body>
 
