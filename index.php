@@ -2,24 +2,19 @@
 <?php
 $string = 'Saule teka rytuose';
 $int = 1;
-$bool = 'false';
+$bool = true;
 $null = null;
-
 ?>
 <html>
-
     <head>
-
-        <title>KIntamieji</title>  
+        <title>Kintamieji</title>  
     </head>
     <body>
-
         <ul>
-            <li><?php print $string; ?></li>
-            <li><?php print $int; ?></li>
-            <li><?php print $bool; ?></li>
-            <li><?php print $null; ?></li>
-
+            <li>Stringo tipas: <?php print $string; ?></li>
+            <li>Integer tipas: <?php print $int; ?></li>
+            <li>Booleano tipas: <?php print $bool; ?></li>
+            <li>Null tipas: <?php print $null; ?></li>
         </ul>
     </body>
 
