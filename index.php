@@ -12,6 +12,6 @@ $date = date('Y-m-d', strtotime('+' . $d . 'days'));
         <title>Šiukšlės</title>  
     </head>
     <body>
-        <p>Po <?php print round($d, 0) . ' dienų' . ' ' . $date; ?> daryk ką nors, kad išvengtum konflikto.</p>
+        <p>Po <?php print floor($d) . ' dienų' . ' ' . $date; ?> daryk ką nors, kad išvengtum konflikto.</p>
     </body>
 </html>
