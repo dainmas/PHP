@@ -18,16 +18,27 @@ if ($sunny == true) {
                 background-size: cover;
                 width: 100px;
                 height: 100px;
+               position:relative;
             }
             .debesuota{
                 background-image: url('https://cdn4.iconfinder.com/data/icons/programming-line-style/32/Cloud-512.png');
                 background-size: cover;
                 width: 100px;
                 height: 100px;
+                position:relative;
+            }
+            .text{
+                display:inline-block;
+                position:absolute;
+                left: 120px;
+                top: 50px; 
             }
         </style>
     </head>
     <body>
-        <div class="<?php print $class; ?>"><?php print $oras; ?></div>
+        <div class="container">
+            <div class="<?php print $class; ?>"></div>
+            <div class="text"><?php print $oras; ?></div>
+        </div>
     </body>
 </html>
