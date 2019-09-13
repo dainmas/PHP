@@ -1,44 +1,45 @@
 <?php
-$sunny = rand(true, false);
+$black_coffee = rand(true, false);
 
-if ($sunny == true) {
-    $class = 'sunny';
-    $oras = 'Saulėta';
+if ($black_coffee == true) {
+
+    $coffee = 'Black-coffee';
 } else {
-    $class = 'debesuota';
-    $oras = 'Debesuota';
+
+    $coffee = 'Latte';
 }
+$text = 'Gersiu ' . $coffee;
 ?>
+
 <html>
     <head>
-        <title>Oras</title> 
+        <title>Kava</title> 
         <style>
-            .sunny{
-                background-image: url('https://images.vexels.com/media/users/3/145134/isolated/preview/46b65a02ff99e7bb4e84d4d3d627a729-sun-sharp-beams-icon-by-vexels.png'); 
-                background-size: cover;
-                width: 100px;
-                height: 100px;
-               position:relative;
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
-            .debesuota{
-                background-image: url('https://cdn4.iconfinder.com/data/icons/programming-line-style/32/Cloud-512.png');
-                background-size: cover;
-                width: 100px;
-                height: 100px;
-                position:relative;
+            .black-coffee{
+                background-color: brown;
+                color: white;
+                height: 100vh;
+
             }
-            .text{
-                display:inline-block;
-                position:absolute;
-                left: 120px;
-                top: 50px; 
+            .latte{
+                background-color: yellow;
+                color: white;
+                height: 100vh;
             }
+            p{
+                font-size:40px;
+            }
+
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="<?php print $class; ?>"></div>
-            <div class="text"><?php print $oras; ?></div>
+        <div class="<?php print $coffee; ?>">
+            <h1><?php print $text; ?></h1>
         </div>
     </body>
 </html>
