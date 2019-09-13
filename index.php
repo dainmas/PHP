@@ -16,6 +16,7 @@ $text = 'Gersiu ' . $drink;
 <html>
     <head>
         <title>Kava</title> 
+        <link rel="stylesheet" href="includes/normalize.css"
         <style>
             div{
                 display: flex;
