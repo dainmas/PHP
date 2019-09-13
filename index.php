@@ -15,7 +15,7 @@ if ($grizai_velai && !$grizai_isgeres) {
     $pasekmes = 'Nieko nepadarei';
     $kur_miegosi = 'Nemiegosi';
 }
-$kur_miegosi = 'Išvada: ' . $pasekmes . ' ant sofos!';
+$kur_miegosi = 'Išvada: ' . $kur_miegosi . ' ant sofos!';
 ?>
 <html>
     <head>
