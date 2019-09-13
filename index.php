@@ -1,29 +1,33 @@
 <?php
+$sunny = rand(true, false);
 
-$grizai_velai = rand(0, 1);
-$grizai_isgeres = rand(0, 1);
-if ($grizai_velai && !$grizai_isgeres) {
-    $pasekmes = 'Grizai velai';
-    $kur_miegosi = 'Miegosi';
-} else if ($grizai_velai && $grizai_isgeres) {
-    $pasekmes = 'Grizai velai ir isgeres';
-    $kur_miegosi = 'Miegosi';
-} else if (!$grizai_velai && $grizai_isgeres) {
-    $pasekmes = 'Grizai isgeres';
-    $kur_miegosi = 'Miegosi';
+if ($sunny == true) {
+    $class = 'sunny';
+    $oras = 'Saulėta';
 } else {
-    $pasekmes = 'Nieko nepadarei';
-    $kur_miegosi = 'Nemiegosi';
+    $class = 'debesuota';
+    $oras = 'Debesuota';
 }
-$kur_miegosi = 'Išvada: ' . $kur_miegosi . ' ant sofos!';
 ?>
 <html>
     <head>
-        <title>Buitinė skaičiuoklė</title>  
+        <title>Oras</title> 
+        <style>
+            .sunny{
+                background-image: url('https://images.vexels.com/media/users/3/145134/isolated/preview/46b65a02ff99e7bb4e84d4d3d627a729-sun-sharp-beams-icon-by-vexels.png'); 
+                background-size: cover;
+                width: 100px;
+                height: 100px;
+            }
+            .debesuota{
+                background-image: url('https://cdn4.iconfinder.com/data/icons/programming-line-style/32/Cloud-512.png');
+                background-size: cover;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
     </head>
     <body>
-        <h1>Buitine skaiciuokle </h1>
-        <h2><?php print $pasekmes; ?></h2>
-        <h3><?php print $kur_miegosi; ?></h3>
+        <div class="<?php print $class; ?>"><?php print $oras; ?></div>
     </body>
 </html>
