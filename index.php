@@ -1,24 +1,24 @@
 <?php
 
-$distance = rand(100, 200);
-$consumption = 7.5;
-$price_1 = 1.3;
-$my_money = 100;
+$grizai_velai = rand(0, 1);
+$grizai_isgeręs = rand(0, 1);
 
-$fuel_total = round(($distance * $consumption / 100), 2);
-$price_trip = round(($fuel_total * $price_1), 2);
-        
-$title = 'Kelionės skaičiuoklė';
-$text_1 = "Nuvažiuota distancija: $distance";
-$text_2 = "Sunaudota $fuel_total l. kuro";
-$text_3 = "Kaina: $price_trip pinigų";
-
-if($my_money >= $price_trip){
-    $perku ='įperkama';
-}else{
-    $perku ='neįperkama';
+if ($grizai_velai > $grizai_isgeręs) {
+    $text_1;
+} elseif (
+        $grizai_velai && $grizai_isgeręs) {
+    $text_2;
+} elseif (
+        $grizai_velai < $grizai_isgeręs) {
+    $text_3;
+} else {
+    $text_4;
 }
-$text_4 = "Išvada: Kelionė $perku ";
+$title = 'Buitinė skaičiuoklė';
+$text_1 = "Situacija: grįžai vėlai";
+$text_2 = "Situacija: grįžai vėlai ir išgėręs";
+$text_3 = "Situacija: grįžai išgėręs";
+$text_4 = "Situacija: nieko nepadarei";
 
 ?>
 <html>
@@ -26,12 +26,11 @@ $text_4 = "Išvada: Kelionė $perku ";
         <title><?php print $title; ?></title>  
     </head>
     <body>
-        <ul>
-            <li><?php print $text_1; ?></li>
-            <li><?php print $text_2; ?></li>
-            <li><?php print $text_3; ?></li>
-        </ul>
-        <hr>
-        <p><?php print $text_4; ?></p>
-    </body>
+        <h1><?php print $title; ?></h1>
+    <li><h2><?php print $text_1; ?></h2></li>
+    <li><h2><?php print $text_2; ?></h2></li>
+    <li><h2><?php print $text_3; ?></h2></li>
+    <li><h2><?php print $text_4; ?></h2></li>
+
+</body>
 </html>
