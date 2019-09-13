@@ -1,14 +1,16 @@
 <?php
-$black_coffee = rand(true, false);
 
-if ($black_coffee == true) {
+$random_drink = rand(0, 2);
 
-    $coffee = 'Black-coffee';
+if ($random_drink === 0) {
+    $drink = 'Black-coffee';
+} elseif ($random_drink === 1) {
+    $drink = 'Latte';
 } else {
-
-    $coffee = 'Latte';
+    $drink = 'Tea';
 }
-$text = 'Gersiu ' . $coffee;
+$text = 'Gersiu ' . $drink;
+
 ?>
 
 <html>
@@ -20,26 +22,36 @@ $text = 'Gersiu ' . $coffee;
                 justify-content: center;
                 align-items: center;
             }
+            
             .black-coffee{
                 background-color: brown;
                 color: white;
                 height: 100vh;
 
             }
+            
             .latte{
                 background-color: yellow;
-                color: white;
+                color: brown;
                 height: 100vh;
             }
+
+            .tea{
+                background-color: green;
+                color: white;
+                height: 100vh;  
+            }
+
             p{
-                font-size:40px;
+                font-size: 60px;
+                font-weight: bold;
             }
 
         </style>
     </head>
     <body>
-        <div class="<?php print $coffee; ?>">
-            <h1><?php print $text; ?></h1>
+        <div class="<?php print $drink; ?>">
+            <p><?php print $text; ?></p>
         </div>
     </body>
 </html>
