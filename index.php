@@ -4,8 +4,8 @@ $distance = rand(100, 200);
 $consumption = 7.5;
 $price_1 = 1.3;
 
-$fuel_total = $distance * $consumption / 100;
-$price_trip = $fuel_total * $price_1;
+$fuel_total = round(($distance * $consumption / 100), 2);
+$price_trip = round(($fuel_total * $price_1), 2);
         
 $title = 'Kelionės skaičiuoklė';
 $text_1 = "Nuvažiuota distancija: $distance";
