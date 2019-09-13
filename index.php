@@ -1,18 +1,27 @@
 <?php
 
-$siuksliadezes_turis = 40;
-$siuksliu_turis_per_d = 15;
-$max_kaupo_turis = rand(5, 10);
-$d = floor(($siuksliadezes_turis + $max_kaupo_turis) / $siuksliu_turis_per_d);
-$date = date('Y-m-d', strtotime('+' . $d . 'days'));
-$text = "Po $d ($date) daryk ką nors, kad išvengtum konflikto.";
-$title = "Siuksline ($siuksliadezes_turis + $max_kaupo_turis 1)";
+$distance = rand(100, 200);
+$consumption = 7.5;
+$price_1 = 1.3;
+
+$fuel_total = $distance * $consumption / 100;
+$price_trip = $fuel_total * $price_1;
+        
+$title = 'Kelionės skaičiuoklė';
+$text_1 = "Nuvažiuota distancija: $distance";
+$text_2 = "Sunaudota $fuel_total l. kuro";
+$text_3 = "Kaina: $price_trip pinigų";
+
 ?>
 <html>
     <head>
         <title><?php print $title; ?></title>  
     </head>
     <body>
-        <p><?php print $text; ?></p>
+        <ul>
+            <li><?php print $text_1; ?></li>
+            <li><?php print $text_2; ?></li>
+            <li><?php print $text_3; ?></li>
+        </ul>
     </body>
 </html>
