@@ -1,58 +1,58 @@
 <?php
+$sunny = rand(0, 1);
+$rainny = rand(0, 1);
 
-$random_drink = rand(0, 2);
-
-if ($random_drink === 0) {
-    $drink = 'Black-coffee';
-} elseif ($random_drink === 1) {
-    $drink = 'Latte';
+if ($sunny && !$rainny) {
+    $class = 'sunny';
+    $oras = 'Saulėta';
+} elseif (!$sunny && $rainny) {
+    $class = 'rainny';
+    $oras = 'Debesuota su lietum';
 } else {
-    $drink = 'Tea';
+    $class = 'debesuota';
+    $oras = 'Debesuota';
 }
-$text = 'Gersiu ' . $drink;
-
 ?>
-
 <html>
     <head>
-        <title>Kava</title> 
-        <link rel="stylesheet" href="includes/normalize.css"
+        <title>Oras</title> 
         <style>
-            div{
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .sunny{
+                background-image: url('https://images.vexels.com/media/users/3/145134/isolated/preview/46b65a02ff99e7bb4e84d4d3d627a729-sun-sharp-beams-icon-by-vexels.png'); 
+                background-size: cover;
+                width: 140px;
+                height: 140px;
+                position:relative;
             }
-            
-            .black-coffee{
-                background-color: brown;
-                color: white;
-                height: 100vh;
-
-            }
-            
-            .latte{
-                background-color: yellow;
-                color: brown;
-                height: 100vh;
+            .debesuota{
+                background-image: url('https://cdn4.iconfinder.com/data/icons/programming-line-style/32/Cloud-512.png');
+                background-size: cover;
+                width: 140px;
+                height: 140px;
+                position:relative;
             }
 
-            .tea{
-                background-color: green;
-                color: white;
-                height: 100vh;  
-            }
+            .rainny{
+                background-image: url('https://i.dlpng.com/static/png/501468_preview.png');
+                background-size: cover;
+                width: 140px;
+                height: 140px;
+                position:relative; 
+            }  
 
-            p{
-                font-size: 60px;
-                font-weight: bold;
-            }
 
+            .text{
+                display:inline-block;
+                position:absolute;
+                left: 150px;
+                top: 50px; 
+            }
         </style>
     </head>
     <body>
-        <div class="<?php print $drink; ?>">
-            <p><?php print $text; ?></p>
+        <div class="container">
+            <div class="<?php print $class; ?>"></div>
+            <div class="text"><?php print $oras; ?></div>
         </div>
     </body>
 </html>
