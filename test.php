@@ -1,5 +1,6 @@
 <?php
 $time = date('s');
+
 $time_reversed = 59 - $time;
 $title = 'Bomba pačios sukurta';
 ?>

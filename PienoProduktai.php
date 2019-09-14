@@ -1,30 +1,26 @@
 <?php
 $pieno_produktai = [
-    [
-        'name' => 'liesa varske',
-        'price' => 1,
-        'akcija' => 0.9
-    ],
-    [
-        'name' => 'riebi varske',
-        'price' => 1.5,
-        'akcija' => 1
-    ],
-    [
-        'name' => 'Rokiskio varske',
-        'price' => 2,
-        'akcija' => 1.5
-    ],
-    [
-        'name' => 'namine varske',
-        'price' => 1.5,
-        'akcija' => 1
-    ]
+[
+'name' => 'liesa varske',
+ 'price' => 1,
+ 'akcija' => 0.9
+],
+ [
+'name' => 'riebi varske',
+ 'price' => 1.5,
+ 'akcija' => 1
+],
+ [
+'name' => 'Rokiskio varske',
+ 'price' => 2,
+ 'akcija' => 1.5
+],
+ [
+'name' => 'namine varske',
+ 'price' => 1.5,
+ 'akcija' => 1
+]
 ];
-
-//$nameProduct = $PienoProduktai[0][$_POST[0]]['name'];
-//$priceProduct = $PienoProduktai[0][$_POST[0]]['price'];
-//$akcijaProduct = $PienoProduktai[0][$_POST[0]]['akcija'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +32,7 @@ $pieno_produktai = [
         <title>Pieno produktai</title>
         <style>
             body {
-                width: 80vp;
+                width: 80vw;
                 text-align: center;
                 background-color: whitesmoke;
             } 
@@ -65,7 +61,7 @@ $pieno_produktai = [
                 <div class="price"><?php print $value['price']; ?></div>
                 <div class="akcija"><?php print $value['akcija']; ?></div>
             </div>
-            <?php enforeach; ?>
+            <?php endforeach; ?>
         </div>
     </body>
 </html>
