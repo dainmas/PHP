@@ -1,4 +1,5 @@
 <?php
+header('refresh:1');
 $date = date('s');
 if ($date % 2 == 0) {
     $output = 'even';

@@ -1,4 +1,5 @@
 <?php
+header('refresh:1');
 $sunny = rand(0, 1);
 $rainny = rand(0, 1);
 

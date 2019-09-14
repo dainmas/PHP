@@ -1,4 +1,5 @@
 <?php
+header('refresh:1');
 $time = date('s');
 
 $time_reversed = 59 - $time;
