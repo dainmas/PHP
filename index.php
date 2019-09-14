@@ -2,12 +2,17 @@
 $sunny = rand(0, 1);
 $rainny = rand(0, 1);
 
-if ($sunny && !$rainny) {
-    $class = 'sunny';
-    $oras = 'Saulėta';
-} elseif (!$sunny && $rainny) {
+if ($sunny) {
+    if ($rainny) {
+        $class = 'sunnyrainny';
+        $oras = 'Debesuota su pragiedruliais, silpnas lietus';
+    } else {
+        $class = 'sunny';
+        $oras = 'Saulėta';
+    }
+} elseif ($rainny) {
     $class = 'rainny';
-    $oras = 'Debesuota su lietum';
+    $oras = 'Lietus';
 } else {
     $class = 'debesuota';
     $oras = 'Debesuota';
@@ -39,7 +44,13 @@ if ($sunny && !$rainny) {
                 height: 140px;
                 position:relative; 
             }  
-
+            .sunnyrainny{
+                background-image: url('http://pluspng.com/img-png/rain-and-sun-png-cloud-drizzle-rain-shower-storm-sun-weather-icon-512.png');
+                background-size: cover;
+                width: 140px;
+                height: 140px;
+                position:relative; 
+            }  
 
             .text{
                 display:inline-block;
