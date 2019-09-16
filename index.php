@@ -24,7 +24,13 @@ for ($d = 0; $d < $days; $d++) {
         $count_ttl += $cigs_sun;
     }
 }
-
+for ($c = 0; $c < $count_ttl; $c++) {
+    if ($c % 20 == 0) {
+        $class = 'img-border';
+    } else {
+        $class = 'img';
+    }
+}
 $number_packs = ceil($count_ttl / 20);
 $number_packs_mon_thu = ceil($count_mon_thu_ttl / 20);
 $price_ttl = $number_packs * 3.5;
@@ -38,7 +44,22 @@ $text_3 = "Viso traukdamas prastovėsiu $time_total valandų.";
 ?>
 <html>
     <head>
-        <title>Dumai</title> 
+        <title>Dumai</title>
+        <style>
+            .img{
+                background-image: url(https://previews.123rf.com/images/kuzma/kuzma0603/kuzma060300104/339315-one-cigarette.jpg);
+                background-size: cover;
+                width: 40px;
+                height: 80px;
+                display: inline-block;
+
+            }
+            
+            .img-border{
+                border: 2px solid red;
+                width: 830px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -47,5 +68,12 @@ $text_3 = "Viso traukdamas prastovėsiu $time_total valandų.";
             <h3><?php print $text_2; ?></h3>
             <h3><?php print $text_3; ?></h3>
         </div>
+        <?php for ($c = 0; $c < $count_ttl; $c++) : ?>
+            <?php if ($c % 20 == 0) : ?>
+                <div class="img-border"></div>
+            <?php else: ?>
+                <div class="img"></div>
+            <?php endif; ?>
+        <?php endfor; ?>
     </body>
 </html>
