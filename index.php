@@ -1,17 +1,19 @@
 <?php
-
 $months = 12;
 $wallet = 1000;
 $month_income = 700;
-$month_expenses = rand(550, 750);
+
 
 for ($month = 1; $month <= 12; $month++) {
-    $month_expenses = rand(550, 750);
-    $wallet += $month_income;
-    $wallet -= $month_expenses;
+    $month_expenses = rand(550, 1000);
+    $wallet += $month_income - $month_expenses;
+    if ($wallet < 0) {
+        print $month;
+        break;
+    }
 }
 
-$text1 = "Po $months m., prognozuojamas likutis: $wallet";
+$text1 = "Atsargiai, $month mėnesį gali baigtis pinigai!";
 
 ?>
 <html>
