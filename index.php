@@ -6,17 +6,19 @@ $sunys = rand(1, 3);
 $katasuniai = 0;
 $text = 'Katašunių išeiga';
 $text1 = "Dalyvavo $kates katės ir $sunys šunys";
-$text2 = "Katašunių išeiga: $katasuniai";
+
 
 for ($k = 1; $k <= $sunys; $k++) {
     for ($s = 1; $s <= $kates; $s++) {
         $pavyko = rand(0, 1);
         if ($pavyko == true) {
-      $katasuniai++;
+            $katasuniai++;
             break;
         }
     }
 }
+
+$text2 = "Katašunių išeiga: $katasuniai";
 
 ?>
 <html>
