@@ -5,10 +5,10 @@ $pack_price = 3.5;
 
 $count_ttl = 0;
 $count_mon_thu_ttl = 0;
+$time_per_cig = 5;
 
 for ($d = 0; $d < $days; $d++) {
     $savaites_diena = date('N', strtotime("+$d days"));
-
     if ($savaites_diena <= 4) {
         $cigs_mon_thu = rand(3, 4);
         $count_ttl += $cigs_mon_thu;
@@ -29,9 +29,11 @@ $number_packs = ceil($count_ttl / 20);
 $number_packs_mon_thu = ceil($count_mon_thu_ttl / 20);
 $price_ttl = $number_packs * 3.5;
 $price_mon_thu = $number_packs_mon_thu * 3.5;
+$time_total = round($count_ttl * $time_per_cig / 60);
 
 $text_1 = "Per $days dienas, surūkysiu $count_ttl cigarečių už $price_ttl eur.";
-$text_2 = "Nerūkydamas darbo dienomis, sutaupyčiau $price_mon_thu eur."
+$text_2 = "Nerūkydamas darbo dienomis, sutaupyčiau $price_mon_thu eur.";
+$text_3 = "Viso traukdamas prastovėsiu $time_total valandų.";
 
 ?>
 <html>
@@ -43,6 +45,7 @@ $text_2 = "Nerūkydamas darbo dienomis, sutaupyčiau $price_mon_thu eur."
             <h1>Mano dūmų skaičiuoklė</h1>
             <h2><?php print $text_1; ?></h2>
             <h3><?php print $text_2; ?></h3>
+            <h3><?php print $text_3; ?></h3>
         </div>
     </body>
 </html>
