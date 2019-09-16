@@ -1,35 +1,27 @@
 <?php
 
-$kates = rand(1, 3);
-$sunys = rand(1, 3);
+$months = 12;
+$wallet = 1000;
+$month_income = 700;
+$month_expenses = rand(550, 750);
 
-$katasuniai = 0;
-$text = 'Katašunių išeiga';
-$text1 = "Dalyvavo $kates katės ir $sunys šunys";
-
-
-for ($k = 1; $k <= $sunys; $k++) {
-    for ($s = 1; $s <= $kates; $s++) {
-        $pavyko = rand(0, 1);
-        if ($pavyko == true) {
-            $katasuniai++;
-            break;
-        }
-    }
+for ($month = 1; $month <= 12; $month++) {
+    $month_expenses = rand(550, 750);
+    $wallet += $month_income;
+    $wallet -= $month_expenses;
 }
 
-$text2 = "Katašunių išeiga: $katasuniai";
+$text1 = "Po $months m., prognozuojamas likutis: $wallet";
 
 ?>
 <html>
     <head>
-        <title>for kates</title> 
+        <title>for Wallet</title> 
     </head>
     <body>
         <div class="container">
-            <h1><?php print $text; ?></h1>
+            <h1>Wallet Forecast</h1>
             <h2><?php print $text1; ?></h2>
-            <h3><?php print $text2; ?></h3>
         </div>
     </body>
 </html>
