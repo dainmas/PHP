@@ -2,12 +2,13 @@
 
 $kates = rand(1, 3);
 $sunys = rand(1, 3);
-$pavyko = rand(0, 1);
+
 $katasuniai = 0;
 $text = 'Katašunių išeiga';
 
 for ($k = 1; $k <= $sunys; $k++) {
     for ($s = 1; $s <= $kates; $s++) {
+        $pavyko = rand(0, 1);
         if ($pavyko == true) {
       $katasuniai++;
             break;
