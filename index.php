@@ -9,8 +9,8 @@ $x = rand(1, 10);
     </head>
     <body>
         <div class="container">
-            <?php for ($x = 1; $x <= 10; $x++): ?>
-                <p><?php print "Tai yra $x-tasis ciklas"; ?></p>
+            <?php for ($i = 1; $i <= $x; $i++): ?>
+                <p><?php print "Tai yra $i-tasis ciklas"; ?></p>
             <?php endfor; ?>
         </div>
     </body>
