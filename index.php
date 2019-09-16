@@ -5,6 +5,8 @@ $sunys = rand(1, 3);
 
 $katasuniai = 0;
 $text = 'Katašunių išeiga';
+$text1 = "Dalyvavo $kates katės ir $sunys šunys";
+$text2 = "Katašunių išeiga: $katasuniai";
 
 for ($k = 1; $k <= $sunys; $k++) {
     for ($s = 1; $s <= $kates; $s++) {
@@ -24,8 +26,8 @@ for ($k = 1; $k <= $sunys; $k++) {
     <body>
         <div class="container">
             <h1><?php print $text; ?></h1>
-            <h2><?php print "Dalyvavo $kates katės ir $sunys šunys"; ?></h2>
-            <h3><?php print "Katašunių išeiga: $katasuniai"; ?></h3>
+            <h2><?php print $text1; ?></h2>
+            <h3><?php print $text2; ?></h3>
         </div>
     </body>
 </html>
