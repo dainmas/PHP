@@ -1,34 +1,28 @@
 <?php
-$kates = rand(1, 3);
-print "Kačių $kates<br>";
-$sunys = rand(1, 3);
-print "Šunų $sunys<br>";
-$katasuniai = 0;
 
-for ($i = 1; $i <= $kates; $i++) {
-    print "<br/>Kačių ciklas $i <br/>";
-    for ($b = 1; $b <= $sunys; $b++) {
-        print "šunų ciklas $b <br/>";
-        $pavyko = rand(0, 1);
-        print "Randomizuotas skaičius $pavyko<br>";
-            
-        if ($pavyko) {
-            $katasuniai++;
-            break;
-        }
-    }
-    print "Po $i ciklo kiek turim $katasuniai katasuniu<br>";
+$grikiai = 5000;
+
+$days = 0;
+for ($d = 0; $d < $grikiai; $d++) {
+    $days = date('d', strtotime("+$d days"));
+    $per_day = rand(200, 500);
+    $grikiai -= $per_day;
 }
-$h2_text = "Dalyvavo $kates kates ir $sunys sunys";
-$h3_text = "Katasuniu iseiga: $katasuniai";
+
+$data = date('Y-m-d', strtotime('+' . $days . 'days'));
+$text_1 = "Rasta grikių: $grikiai g.";
+$text_2 = "Išgyvensiu dar $days dienas, iki $data.";
 ?>
+
 <html>
     <head>
-        <meta charset="utf-8">
+        <title>for ciklo grikiai</title>
     </head>
     <body>
-        <h1>Katasuniu iseiga</h1>
-        <h2><?php print $h2_text; ?></h2>
-        <h3><?php print $h3_text; ?></h3>
+        <div class="container">
+            <h1>Kiek dienų galėsi valgyti grikius?</h1>
+            <h2><?php print $text_1; ?></h2>
+            <h3><?php print $text_2; ?></h3>
+        </div>
     </body>
 </html>
