@@ -54,10 +54,12 @@ $text_3 = "Viso traukdamas prastovėsiu $time_total valandų.";
                 display: inline-block;
 
             }
-            
+
             .img-border{
                 border: 2px solid red;
-                width: 830px;
+                width: 900px;
+                height: 85px;
+                margin:10px 0px;;
             }
         </style>
     </head>
@@ -68,12 +70,16 @@ $text_3 = "Viso traukdamas prastovėsiu $time_total valandų.";
             <h3><?php print $text_2; ?></h3>
             <h3><?php print $text_3; ?></h3>
         </div>
-        <?php for ($c = 0; $c < $count_ttl; $c++) : ?>
-            <?php if ($c % 20 == 0) : ?>
-                <div class="img-border"></div>
-            <?php else: ?>
-                <div class="img"></div>
-            <?php endif; ?>
-        <?php endfor; ?>
+        <div class="container-img">
+            <?php for ($c = 0; $c < $count_ttl; $c++) : ?>
+                <?php if ($c % 20 == 0) : ?>
+                    <div class="img-border">
+                        <div class="img"></div>
+                    <?php else: ?>
+                        <div class="img"></div>
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div>
+        </div>
     </body>
 </html>
