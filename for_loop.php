@@ -3,10 +3,15 @@
 $grikiai = 5000;
 $prad_grikiai = $grikiai;
 $days = 0;
-for (; $grikiai>0 ; ) {
-    $per_day = rand(200, 500);
+for ($per_day = rand(200, 500); $grikiai> $per_day; ) {
     $grikiai -= $per_day;
-    $days ++;
+    $per_day = rand(200, 500);      
+    if ($grikiai > $per_day) {
+        $days ++;          
+    } else {
+        $next_day = $days + 1;
+        var_dump("Diena: $next_day neisgyvensiu, nes liko $grikiai, o suvalgyciau $per_day"); 
+    }
 }
 
 $data = date('Y-m-d', strtotime('+' . $days . 'days'));
