@@ -24,13 +24,13 @@ for ($d = 0; $d < $days; $d++) {
         $count_ttl += $cigs_sun;
     }
 }
-for ($c = 0; $c < $count_ttl; $c++) {
-    if ($c % 20 == 0) {
-        $class = 'img-border';
-    } else {
-        $class = 'img';
-    }
-}
+//for ($c = 0; $c < $count_ttl; $c++) {
+//    if ($c % 20 == 0) {
+//        $class = 'img-border';
+//    } else {
+//        $class = 'img';
+//    }
+//}
 $number_packs = ceil($count_ttl / 20);
 $number_packs_mon_thu = ceil($count_mon_thu_ttl / 20);
 $price_ttl = $number_packs * 3.5;
