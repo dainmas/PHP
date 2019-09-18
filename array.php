@@ -1,48 +1,33 @@
 <?php
 
-$fruts_array = ['Obuolys', 'Apelsinas', 'Cukinija'];
-var_dump($fruts_array);
-
-$food_array = [
-    [
-        'kiekis' => 2,
-        'dydis' => 'dideli',
-        'pavadinimas' => 'Kiaušiniai',
-    ],
-    [
-        'kiekis' => 1,
-        'dydis' => 'mažas',
-        'pavadinimas' => 'Baklažanas',
-    ],
-    [
-        'kiekis' => 1,
-        'dydis' => 'didelis',
-        'pavadinimas' => 'Grietinės indelis',
-    ]
-];
-
-var_dump($food_array);
-
 $daiktai_array = [
     [
         'kieno_vardas' => 'Petro',
         'kieno_pavarde' => 'Pizdžio',
-        'savybe' => 'pamestas',
-        'daiktas' => 'telefonas'
+        'jo_daiktai' => [
+            'savybe' => 'Pamestas',
+            'daiktas' => 'Telefonas'
+        ]
     ],
     [
         'kieno_vardas' => 'Tomo',
         'kieno_pavarde' => 'Ablomo',
-        'savybe' => 'naudojamas',
-        'daiktas' => 'buljonas'
+        'jo_daiktai' => [
+            'savybe' => 'Naudojamas',
+            'daiktas' => 'Buljonas'
+        ]
     ],
     [
         'kieno_vardas' => 'Anos',
         'kieno_pavarde' => 'Shitkovos',
-        'savybe' => 'pasibaigęs',
-        'daiktas' => 'rulonas'
-    ]
+        'jo_daiktai' => [
+            'savybe' => 'Pasibaigęs',
+            'daiktas' => 'Rulonas'
         ]
-        
+    ]
+];
+
+var_dump($daiktai_array);
+
 ?>
 
