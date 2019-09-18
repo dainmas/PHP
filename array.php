@@ -2,38 +2,44 @@
 
 $daiktai_array = [
     [
-        'kieno_vardas' => 'Petro',
-        'kieno_pavarde' => 'Pizdžio',
-        'jo_daiktai' => [
+        'lentyna_1' => [
             [
-                'savybe' => 'Pamestas',
-                'daiktas' => 'Telefonas'
-            ]
-        ]
-    ],
-    [
-        'kieno_vardas' => 'Tomo',
-        'kieno_pavarde' => 'Ablomo',
-        'jo_daiktai' => [
+                'name' => 'Kiaušiniai',
+                'quantity' => 3
+            ],
             [
-                'savybe' => 'Naudojamas',
-                'daiktas' => 'Buljonas'
-            ]
-        ]
-    ],
-    [
-        'kieno_vardas' => 'Anos',
-        'kieno_pavarde' => 'Shitkovos',
-        'jo_daiktai' => [
+                'name' => 'Grietinė',
+                'quantity' => 1
+            ],
             [
-                'savybe' => 'Pasibaigęs',
-                'daiktas' => 'Rulonas'
+                'name' => 'Jogurtas',
+                'quantity' => 2
+            ],
+            [
+                'name' => 'Žuvis',
+                'quantity' => 0
             ]
-        ]
+        ],
+        'lentyna_2' => [
+            [
+                'name' => 'Pienas',
+                'quantity' => 1
+            ],
+            [
+                'name' => 'Kefyras',
+                'quantity' => 0
+            ],
+            [
+                'name' => 'Degtinė',
+                'quantity' => 2
+            ],
+            [
+                'name' => 'Kečupas',
+                'quantity' => 2
+            ],
+        ],
     ]
 ];
 
 var_dump($daiktai_array);
-
-?>
 
