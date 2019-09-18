@@ -1,33 +1,12 @@
 <?php
-header('refresh:1');
-$time = date('s');
+$skaicius_1 = rand(0, 3);
+$skaicius_2 = rand(0, 5);
 
-$time_reversed = 59 - $time;
-$title = 'Bomba pačios sukurta';
-?>
-<html>
-    <head>
-        <title><?php print $title; ?></title>
-        <style>
-            .bomba{
-                width: 1<?php print $time; ?>px;
-                height: 1<?php print $time; ?>px;
-                border-radius: 100%;
-                background-color: black;
-                color: white;
-                text-align: center;
-                margin: auto;  
-            }
 
-            .time-0{
-                background-color: red;
-            }
+for ($i = 0; $i < $skaicius_1; $i++) {
+    for ($j = 0; $j < $skaicius_2; $j++) {
+        print $j;
+    }
+    print $i;
+}
 
-        </style>
-    </head>
-    <body>
-        <div class=" bomba time-<?php print $time_reversed; ?>">
-            <h1><?php print $time_reversed; ?></h1>
-        </div>
-    </body>
-</html>

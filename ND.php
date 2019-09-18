@@ -17,7 +17,7 @@ if ($date % 2 == 0) {
                 height: 400px;
                 background-color: black;
                 color: white;
-                position:realative;  
+                position:relative;  
             }
             .odd{
                 width: 400px;
@@ -25,7 +25,7 @@ if ($date % 2 == 0) {
                 border-radius: 100%;
                 background-color: yellow;
                 color: white;
-                position:realative;    
+                position:relative;    
             }
             p{
                 position:absolute; 

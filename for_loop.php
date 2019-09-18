@@ -1,33 +1,33 @@
 <?php
+header('refresh: 1');
+$max_people_num = 30;
 
-$santaupos = 15000;
-$car_price_new = 30000;
-$depreciation = 2;
+//for ($i = 0; $i < $max_people_num; $i++) {
 
-$car_price_used = $car_price_new;
-$depreciation_absolute = (100 - $depreciation) / 100;
-
-for ($months = 0; $car_price_used >= $santaupos; $months++) {
-    $car_price_used *= $depreciation_absolute;
+$people_num = rand(1, 40);
+$couple = rand(0, $people_num % 2 == 0);
+if ($people_num <= $max_people_num) {
+    $text = 'Sveiki';
+} else {
+    $text = 'Atsiprašome, vietų laisvų nėra.';
 }
-
-$depr_perc = intval((1 - $car_price_used / $car_price_new) * 100);
-$car_price_used_int = intval($car_price_used);
-
-$h2_text = "Naujos mašinos kaina: $car_price_new";
-$h3_text = "Mašiną galėsi nusipirkti po $months mėn, kai jos vertė bus: $car_price_used_int eur.";
-$h4_text = "Mašina nuvertės $depr_perc proc.";
-
+if ($couple) {
+    $text_2 = "Iš jų $couple poros(a)";
+    var_dump($couple);
+}else{
+    $text_2 ='Porų nėra';
+}
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Užduotis #3</title>
+        <title>Pratybos kavine for</title>
     </head>
     <body>
-        <h1>Kiek nuvertės mašina?</h1>
-        <h2><?php print $h2_text; ?></h2>
-        <h3><?php print $h3_text; ?></h3>
-        <h4><?php print $h4_text; ?></h4>
+        <h1>Ar tilps į kavinę?</h1>
+        <h2><?php print $text; ?></h2>
+        <h3><?php print $text_2; ?></h3>
+
+
     </body>
 </html>
