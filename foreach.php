@@ -1,6 +1,6 @@
 <?php
 
-$mano_atmintis = ['Penktadienis, Bėgimas, Valgymas, Filmas, Lijo'];
+$mano_atmintis = ['Penktadienis', 'Bėgimas', 'Valgymas', 'Filmas', 'Lijo'];
 
 ?>
 <html>
@@ -12,10 +12,9 @@ $mano_atmintis = ['Penktadienis, Bėgimas, Valgymas, Filmas, Lijo'];
         <h1>Kas buvo penktadienį?</h1>
         <h2>Dainoros atmintis</h2>
         <ul>
-            <?php foreach ($mano_atmintis as $atninties_id => $atmintis): ?>
+            <?php foreach ($mano_atmintis as $atmintis): ?>
                 <li><?php print $atmintis; ?></li>
             <?php endforeach; ?>
         </ul>
-    </div>
 </body>
 </html>
