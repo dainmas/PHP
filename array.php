@@ -5,18 +5,22 @@ var_dump($fruts_array);
 
 $food_array = [
     [
-        'kiekis' => 'du dideli',
+        'kiekis' => 2,
+        'dydis' => 'dideli',
         'pavadinimas' => 'kiausiniai',
     ],
     [
-        'kiekis' => 'vienas mazas',
+        'kiekis' => 1,
+        'dydis' => 'didelis',
         'pavadinimas' => 'baklazanas',
     ],
     [
-        'kiekis' => 'vienas didelis',
+        'kiekis' => 1,
+        'dydis' => 'didelis',
         'pavadinimas' => 'grietines indelis',
     ]
 ];
+
 var_dump($food_array);
 
 ?>
