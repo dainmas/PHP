@@ -1,43 +1,15 @@
 <?php
-header('refresh:1');
-$date = date('s');
-if ($date % 2 == 0) {
-    $output = 'even';
-} else {
-    $output = 'odd';
+
+$array = [];
+
+for ($d = 0; $d < 7; $d++) {
+    $savaites_diena = date('l', strtotime("+$d days"));
+    $array[$d] = $savaites_diena;
+    if ('Saturday' == $savaites_diena || 'Sunday' == $savaites_diena) {
+        $array[$d] = 'weekend'; 
+    }
 }
-?>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>ND boolean ar lyginis</title>
-        <style>
-            .even{
-                width: 400px;
-                height: 400px;
-                background-color: black;
-                color: white;
-                position:relative;  
-            }
-            .odd{
-                width: 400px;
-                height: 400px;
-                border-radius: 100%;
-                background-color: yellow;
-                color: white;
-                position:relative;    
-            }
-            p{
-                position:absolute; 
-                font-size: 40px;
-                top: 150px;
-                left: 180px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="<?php print $output; ?>">
-            <p><?php print $date; ?></p>
-        </div>
-    </body>
-</html>
+// $array[$d] = $savaites_diena; susieju savaites dienas su siandiena
+var_dump($array);
+
+
