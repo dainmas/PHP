@@ -40,3 +40,5 @@ $daiktai_array = [
 ];
 
 var_dump($daiktai_array);
+
+print $daiktai_array['lentyna_1'][0]['name'];
