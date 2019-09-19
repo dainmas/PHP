@@ -1,26 +1,55 @@
 <?php
-
-$mano_atmintis = [
-'Penktadienis', 'Bėgimas', 'Valgymas',
- 'Filmas', 'Lijo'
+$bank_report = [
+    [
+        'name' => 'Iki darbo užmokestis',
+        'amount' => 600,
+    ],
+    [
+        'name' => 'Pirktas maistas Iki parduotuvėje',
+        'amount' => -15
+    ],
+    [
+        'name' => 'Sumokėti mokesčiai',
+        'amount' => -150
+    ],
+    [
+        'name' => 'Pirktas maistas max parduotuvėje',
+        'amount' => -20
+    ],
 ];
 
-$count_mano_atmintis = count($mano_atmintis) - 1;
-$rand_flashback_idx = rand(0, $count_mano_atmintis);
-$flashback_text = "Flashback $rand_flashback_idx : $mano_atmintis[$rand_flashback_idx]";
+
+foreach ($bank_report as $operacijos_nr => $reiksme) {
+    if ($reiksme['amount'] < 0) {
+        $bank_report[$operacijos_nr]['css_class'] = 'expense';
+    } else {
+        $bank_report[$operacijos_nr]['css_class'] = 'income';
+    }
+}
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
     <head>
         <meta charset="UTF-8">
+        <title>Banko ataskaita su forach</title>
+        <style>
+            .expense{
+                color: red;
+            }
+            .income{
+                color: green;
+            }
+        </style>
     </head>
     <body>
-        <h1>Kas buvo penktadienį?</h1>
-        <h2>Dainoros atmintis</h2>
-        <h3><?php print $flashback_text; ?></h3>
+        <h1>Banko ataskaita</h1>
         <ul>
-            <?php foreach ($mano_atmintis as $prisiminimas): ?>
-                <li><?php print $prisiminimas; ?></li>
+            <?php foreach ($bank_report as $operacijos_nr => $reiksme) : ?>
+                <li class="<?php print $reiksme['css_class']; ?>">
+                    <?php print "{$reiksme['name']}: {$reiksme['amount']}"; ?>
+                </li>
             <?php endforeach; ?>
         </ul>
     </body>
