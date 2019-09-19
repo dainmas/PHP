@@ -21,6 +21,8 @@ $bank_report = [
 
 $total_expenses = 0;
 $total_income = 0;
+$balance = 0;
+
 foreach ($bank_report as $operacijos_nr => $reiksme) {
     if ($reiksme['amount'] < 0) {
         $bank_report[$operacijos_nr]['css_class'] = 'expense';
@@ -29,9 +31,10 @@ foreach ($bank_report as $operacijos_nr => $reiksme) {
         $bank_report[$operacijos_nr]['css_class'] = 'income';
         $total_income += $reiksme['amount'];
     }
+    $balance += $reiksme['amount'];
 }
 
-$balance = $total_income - $total_expenses;
+
 $text_h1 = 'Mano banko išklotinė';
 $text_1 = "Balansas: $balance eur";
 $text_2 = "Įplaukos: $total_income eur";
@@ -62,8 +65,8 @@ $text_3 = "Išlaidos: $total_expenses eur";
                 </li>
             <?php endforeach; ?>
             <h2><?php print $text_1; ?></h2>
-            <h3><?php print $text_2; ?></h3>
-            <h3><?php print $text_3; ?></h3>
+            <h3 class="income"><?php print $text_2; ?></h3>
+            <h3 class="expense"><?php print $text_3; ?></h3>
         </ul>
     </body>
 </html>
