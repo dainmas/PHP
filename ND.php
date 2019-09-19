@@ -1,11 +1,28 @@
 <?php
 
 header('refresh: 1');
-$zodziai = ['Petras', 'laukė', 'ryte', 'prie', 'Maksimos'];
-$rasinys = [];
+$daiktai = [
+    [
+        'name' => 'Kremas',
+        'size' => 8,
+    ],
+    [
+        'name' => 'Lūpdažis',
+        'size' => 5,
+    ],
+    [
+        'name' => 'Bananas',
+        'size' => 12,
+    ],
+    [
+        'name' => 'Telefonas',
+        'size' => 10,
+    ]
+];
+$rankinukas = [];
 
-for ($index = 0; $index < rand(0, count($zodziai) - 1); $index++) {
-    $rasinys[] = $zodziai[rand(0, count($zodziai) - 1)];
+for ($index = 0; $index < rand(0, count($daiktai) - 1); $index++) {
+    $rankinukas[] = $daiktai[rand(0, count($daiktai) - 1)];
 }
 
 ?>
@@ -15,11 +32,11 @@ for ($index = 0; $index < rand(0, count($zodziai) - 1); $index++) {
         <title>foreach</title>
     </head>
     <body>
-        <h1>Lietuvių egzaminas</h1>
-        <p>
-            <?php foreach ($rasinys as $key => $value): ?>
-                <?php print $value; ?>
+        <h1>Ką moteris turi rankinuke?</h1>
+        <ul>
+            <?php foreach ($rankinukas as $key => $value): ?>
+                <li><?php print "{$value['name']} užima {$value['size']} cm3"; ?></li>
             <?php endforeach; ?>
-        </p>
+        </ul>
     </body>
 </html>
