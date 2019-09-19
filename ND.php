@@ -1,8 +1,12 @@
 <?php
 
-$mano_atmintis = ['Penktadienis', 'Bėgimas', 'Valgymas', 'Filmas', 'Lijo'];
-$draugo_atmintis = ['Penktadienis', 'Baigėsi darbo savaitė', 'Bėgimas', 'Valgymas', 'Filmas', 'Spintelės konstravimas'];
-$bendra_atmintis = array_intersect($mano_atmintis, $draugo_atmintis);
+header('refresh: 1');
+$zodziai = ['Petras', 'laukė', 'ryte', 'prie', 'Maksimos'];
+$rasinys = [];
+
+for ($index = 0; $index < rand(0, count($zodziai) - 1); $index++) {
+    $rasinys[] = $zodziai[rand(0, count($zodziai) - 1)];
+}
 
 ?>
 <html>
@@ -11,25 +15,11 @@ $bendra_atmintis = array_intersect($mano_atmintis, $draugo_atmintis);
         <title>foreach</title>
     </head>
     <body>
-        <h1>Kas buvo penktadienį?</h1>
-        <h2>Mano atmintis</h2>
-
-        <ul>
-            <?php foreach ($mano_atmintis as $atminties_id => $prisiminimai): ?>
-                <li><?php print $prisiminimai; ?></li>
+        <h1>Lietuvių egzaminas</h1>
+        <p>
+            <?php foreach ($rasinys as $key => $value): ?>
+                <?php print $value; ?>
             <?php endforeach; ?>
-        </ul>
-        <h2>Draugo atmintis</h2>
-        <ul>
-            <?php foreach ($draugo_atmintis as $atminties_id => $prisiminimai): ?>
-                <li><?php print $prisiminimai; ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <h3>Sutapę prisiminimai:</h3> 
-        <ul>
-            <?php foreach ($bendra_atmintis as $atminties_id => $prisiminimai): ?>
-                <li><?php print $prisiminimai; ?></li>
-            <?php endforeach; ?>
-        </ul>
+        </p>
     </body>
 </html>
