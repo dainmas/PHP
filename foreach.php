@@ -1,4 +1,5 @@
 <?php
+
 $bank_report = [
     [
         'name' => 'Iki darbo užmokestis',
@@ -18,14 +19,23 @@ $bank_report = [
     ],
 ];
 
-
+$total_expenses = 0;
+$total_income = 0;
 foreach ($bank_report as $operacijos_nr => $reiksme) {
     if ($reiksme['amount'] < 0) {
         $bank_report[$operacijos_nr]['css_class'] = 'expense';
+        $total_expenses += $reiksme['amount'];
     } else {
         $bank_report[$operacijos_nr]['css_class'] = 'income';
+        $total_income += $reiksme['amount'];
     }
 }
+
+$balance = $total_income - $total_expenses;
+$text_h1 = 'Mano banko išklotinė';
+$text_1 = "Balansas: $balance eur";
+$text_2 = "Įplaukos: $total_income eur";
+$text_3 = "Išlaidos: $total_expenses eur";
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +43,7 @@ foreach ($bank_report as $operacijos_nr => $reiksme) {
 
     <head>
         <meta charset="UTF-8">
-        <title>Banko ataskaita su forach</title>
+        <title>Banko ataskaita su foreach</title>
         <style>
             .expense{
                 color: red;
@@ -44,13 +54,16 @@ foreach ($bank_report as $operacijos_nr => $reiksme) {
         </style>
     </head>
     <body>
-        <h1>Banko ataskaita</h1>
+        <h1><?php print $text_h1; ?></h1>
         <ul>
             <?php foreach ($bank_report as $operacijos_nr => $reiksme) : ?>
                 <li class="<?php print $reiksme['css_class']; ?>">
                     <?php print "{$reiksme['name']}: {$reiksme['amount']}"; ?>
                 </li>
             <?php endforeach; ?>
+            <h2><?php print $text_1; ?></h2>
+            <h3><?php print $text_2; ?></h3>
+            <h3><?php print $text_3; ?></h3>
         </ul>
     </body>
 </html>

@@ -1,44 +1,19 @@
 <?php
 
-$daiktai_array = [
-    'lentyna_1' => [
-        [
-            'name' => 'Kiaušiniai',
-            'quantity' => 3
-        ],
-        [
-            'name' => 'Grietinė',
-            'quantity' => 1
-        ],
-        [
-            'name' => 'Jogurtas',
-            'quantity' => 2
-        ],
-        [
-            'name' => 'Žuvis',
-            'quantity' => 0
-        ]
-    ],
-    'lentyna_2' => [
-        [
-            'name' => 'Pienas',
-            'quantity' => 1
-        ],
-        [
-            'name' => 'Kefyras',
-            'quantity' => 0
-        ],
-        [
-            'name' => 'Degtinė',
-            'quantity' => 2
-        ],
-        [
-            'name' => 'Kečupas',
-            'quantity' => 2
-        ],
-    ],
+$week_day = [
+    'Monday' => 'Darbo diena',
+    'Tuesday' => 'Darbo diena',
+    'Wednesday' => 'Darbo diena',
+    'Thursday' => 'Darbo diena',
+    'Friday' => 'Darbo diena',
+    'Saturday' => 'Išeiginė',
+    'Sunday' => 'Išeiginė'
 ];
 
-var_dump($daiktai_array);
+foreach ($week_day as $key => $value) {
+    if ($key === 'Friday') {
+        print 'Friday yra gera diena';
+    }
+}
 
-print $daiktai_array['lentyna_1'][0]['name'];
+var_dump($week_day);
