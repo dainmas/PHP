@@ -1,4 +1,5 @@
 <?php
+
 $natos = [
     'C',
     'D',
@@ -23,6 +24,7 @@ for ($i = 0; $i < 3; $i++) {
     }
 }
 var_dump($song);
+
 ?>
 <html>
     <head>

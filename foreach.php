@@ -1,4 +1,5 @@
 <?php
+
 $drinks = [
     [
         'name' => 'Buratino limonadas',
@@ -31,6 +32,7 @@ foreach ($drinks as $drink_id => $drink) {
 //$drinks['$drink_id']['price_retail'] = 0;
     $drinks[$drink_id]['price_retail'] = $drink['price_stock'] - ($drink['price_stock'] * $drink['discount'] / 100);
 }
+
 ?>
 <html>
     <head>
