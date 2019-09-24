@@ -5,33 +5,40 @@ $drinks = [
         'name' => 'Buratino limonadas',
         'price_stock' => 3.6,
         'discount' => 0,
-        'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH0I51INpAIdR8Ur_y4VtLL5y8Njsa4GBJXRtEjBmdCoa9b34'
+        'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH0I51INpAIdR8Ur_y4VtLL5y8Njsa4GBJXRtEjBmdCoa9b34',
+        'in_stock' => rand(0, 1)
     ],
     [
         'name' => 'Rugilės gira',
         'price_stock' => 5.79,
         'discount' => 6,
-        'img' => 'http://intermarket.lt/image/cache/catalog/G%C4%97rimai/Vaisvandeniai,%20gira/GUBERNIJA-1,5L-Gira-Rugile-Kwas-chlebowy-litewski%20copy-1000x1000.jpg'
+        'img' => 'http://intermarket.lt/image/cache/catalog/G%C4%97rimai/Vaisvandeniai,%20gira/GUBERNIJA-1,5L-Gira-Rugile-Kwas-chlebowy-litewski%20copy-1000x1000.jpg',
+        'in_stock' => rand(0, 1)
     ],
     [
-        'name' => 'Čipolino gėrimas',
+        'name' => 'Čipo gėrimas',
         'price_stock' => 10.15,
         'discount' => 7,
-        'img' => 'https://cdn.shopify.com/s/files/1/0752/2329/products/7up_2048x.JPG?v=1424665568'
+        'img' => 'https://cdn.shopify.com/s/files/1/0752/2329/products/7up_2048x.JPG?v=1424665568',
+        'in_stock' => rand(0, 1)
     ],
     [
         'name' => 'Grafų gėrimas',
         'price_stock' => 5.79,
         'discount' => 5,
-        'img' => 'https://suebeehomemaker.com/wp-content/uploads/2019/05/Strawberry-Lemonade-Vodka-Slushies-8.jpg'
+        'img' => 'https://suebeehomemaker.com/wp-content/uploads/2019/05/Strawberry-Lemonade-Vodka-Slushies-8.jpg',
+        'in_stock' => rand(0, 1)
     ],
 ];
 
+var_dump($drinks);
 
 foreach ($drinks as $drink_id => $drink) {
 //$drinks['$drink_id']['price_retail'] = 0;
     $drinks[$drink_id]['price_retail'] = $drink['price_stock'] - ($drink['price_stock'] * $drink['discount'] / 100);
 }
+$true = 'Yra sandėlyje';
+$false = 'Nėra sandėlyje';
 
 ?>
 <html>
@@ -81,32 +88,43 @@ foreach ($drinks as $drink_id => $drink) {
                 color:white;
                 text-align: right;
                 float: right;
+                height: 28px;
             }
 
             p{
                 text-align: center;
             }
 
+            .green{
+                color: green;
+                text-align: center;
+            }
+
+            .red{
+                color: red;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
         <h1>Drink Catalogue</h1>
         <div class="container">
-
-
             <?php foreach ($drinks as $drink_id => $drink) : ?>
                 <div class="card">
                     <?php if ($drink['discount'] !== 0): ?>
                         <h4 class="price_stock"><b><?php print $drink['price_stock'] . 'eur'; ?></b></h4>
                         <h4 class="price_retail"><b><?php print round($drinks[$drink_id]['price_retail'], 2) . 'eur'; ?></b></h4>
-
                     <?php else: ?>
                         <h4><b><?php print round($drinks[$drink_id]['price_retail'], 2) . 'eur'; ?></b></h4> 
-
                     <?php endif; ?>
                     <div class="drink-image" style="width: 100%; height: 300px; background-image:url( <?php print $drink['img']; ?>);  background-image: cover; background-position: center;"></div>
                     <div class="container">
                         <p><?php print $drinks[$drink_id]['name']; ?></p>
+                        <?php if ($drink['in_stock'] == true): ?> 
+                            <h3 class="green"><?php print $true; ?> </h3>
+                        <?php else: ?>
+                            <h3 class="red"><?php print $false; ?></h3>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
