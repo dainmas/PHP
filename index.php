@@ -9,19 +9,17 @@ $natos = [
     'B'
 ];
 $song = [];
+
 $natu_suma = count($natos);
 for ($i = 0; $i < 3; $i++) {
     $root = rand(0, $natu_suma - 1);
 
     for ($j = 0; $j < 3; $j++, $root += 2) {
         if ($root >= $natu_suma) {
-            $note = $root - $natu_suma;
-            $song[$i][$note] = $natos[$note];
-            var_dump($song[$i][$note]);
-        } else {
-            $note = $root;
-            $song[$i][$note] = $natos[$note];
+            $root = $root - $natu_suma;
         }
+        
+        $song[$i][$root] = $natos[$root];
     }
 }
 var_dump($song);
@@ -49,9 +47,9 @@ var_dump($song);
     </head>
     <body>
         <div class="container">
-         <?php foreach ($natos as $nata): ?>
-                <?php if ($nata === $song[$i]): ?>
-                    <?php print $song[$i]; ?>
+         <?php foreach ($natos as $nata_id => $nata): ?>
+                <?php if ($nata === $song[$key]): ?>
+                    <?php print $song[$key]; ?>
                     <div class="key-black">
                     </div>
                 <?php else: ?>
