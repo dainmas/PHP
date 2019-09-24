@@ -1,72 +1,34 @@
 <?php
-
-$bank_report = [
+$drinks = [
     [
-        'name' => 'Iki darbo užmokestis',
-        'amount' => 600,
+        'name' => 'Buratino limonadas',
+        'price_stock' => 3.6,
+        'discount' => 0,
+        'img' => 'https://fsmedia.imgix.net/43/08/cc/ef/67f0/499f/a6dc/d4fcf129c0c6.jpeg?rect=0%2C879%2C5592%2C2798&auto=format%2Ccompress&dpr=2&w=650'
     ],
     [
-        'name' => 'Pirktas maistas Iki parduotuvėje',
-        'amount' => -15
+        'name' => 'Rugilės gira',
+        'price_stock' => 5.79,
+        'discount' => 6,
+        'img' => 'http://intermarket.lt/image/cache/catalog/G%C4%97rimai/Vaisvandeniai,%20gira/GUBERNIJA-1,5L-Gira-Rugile-Kwas-chlebowy-litewski%20copy-1000x1000.jpg'
     ],
     [
-        'name' => 'Sumokėti mokesčiai',
-        'amount' => -150
+        'name' => 'Čipolino gėrimas',
+        'price_stock' => 10.15,
+        'discount' => 7,
+        'img' => 'https://thesweetestoccasion.com/wp-content/uploads/2018/08/mermaid-water-fish-bowl-drinks-18.jpg'
     ],
     [
-        'name' => 'Pirktas maistas max parduotuvėje',
-        'amount' => -20
+        'name' => 'Grafų gėrimas',
+        'price_stock' => 5.79,
+        'discount' => 5,
+        'img' => 'https://suebeehomemaker.com/wp-content/uploads/2019/05/Strawberry-Lemonade-Vodka-Slushies-8.jpg'
     ],
 ];
 
-$total_expenses = 0;
-$total_income = 0;
-$balance = 0;
 
-foreach ($bank_report as $operacijos_nr => $reiksme) {
-    if ($reiksme['amount'] < 0) {
-        $bank_report[$operacijos_nr]['css_class'] = 'expense';
-        $total_expenses += $reiksme['amount'];
-    } else {
-        $bank_report[$operacijos_nr]['css_class'] = 'income';
-        $total_income += $reiksme['amount'];
-    }
-    $balance += $reiksme['amount'];
+foreach($drinks as $drink_id => $drink){
+//$drinks['$drink_id']['price_retail'] = 0;
+ $drinks[$drink_id]['price_retail'] = $drink['price_stock'] - ($drink['price_stock'] * $drink['discount'] / 100) ;
 }
-
-
-$text_h1 = 'Mano banko išklotinė';
-$text_1 = "Balansas: $balance eur";
-$text_2 = "Įplaukos: $total_income eur";
-$text_3 = "Išlaidos: $total_expenses eur";
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <title>Banko ataskaita su foreach</title>
-        <style>
-            .expense{
-                color: red;
-            }
-            .income{
-                color: green;
-            }
-        </style>
-    </head>
-    <body>
-        <h1><?php print $text_h1; ?></h1>
-        <ul>
-            <?php foreach ($bank_report as $operacijos_nr => $reiksme) : ?>
-                <li class="<?php print $reiksme['css_class']; ?>">
-                    <?php print "{$reiksme['name']}: {$reiksme['amount']}"; ?>
-                </li>
-            <?php endforeach; ?>
-            <h2><?php print $text_1; ?></h2>
-            <h3 class="income"><?php print $text_2; ?></h3>
-            <h3 class="expense"><?php print $text_3; ?></h3>
-        </ul>
-    </body>
-</html>
+var_dump($drinks);
