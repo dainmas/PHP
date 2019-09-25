@@ -1,23 +1,30 @@
 <?php
 
-$x = rand(0, 50);
+$n = rand(11, 12);
 
-function is_prime($x) {
-    if ($x % 2 == 0 || $x % 3 == 0 || $x % 4 == 0 || $x % 5 == 0) {
-        print "$x nėra pirminis skaičius";
-    } else {
-        print "$x yra pirminis skaičius";
+function Is_prime($n) {
+    for ($x = 2; $x < $n; $x++) {
+        if ($n % $x == 0) {
+            return false;
+        }      
     }
+    return true;
 }
-    $is_prime = is_prime($x);
-    
-    ?>
-    <html>
-        <head>
-            <title>function</title>
+ 
+$p = Is_prime($n);
 
-        </head>
-        <body>
-            <h1><?php print $is_prime; ?></h1>
+if ($p == 0) {
+   $text= "$n nėra pirminis skaičius";
+} else {
+   $text = "$n yra pirminis skaičius";
+}
+
+?>
+<html>
+    <head>
+        <title>function</title>
+    </head>
+    <body>
+        <h1><?php print $text; ?></h1>
     </body>
 </html>
