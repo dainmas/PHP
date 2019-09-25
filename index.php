@@ -1,10 +1,13 @@
 <?php
 
-function add($x, $y) {
-    print $x + $y;
+$x = 1;
+$y = 2;
+
+function sum($x, $y) {
+    return $x + $y;
 }
 
-$a = add(1, 2);
+$sum = "$x ir $y suma: " . sum($x, $y);
 
 ?>
 <html>
@@ -13,6 +16,6 @@ $a = add(1, 2);
 
     </head>
     <body>
-        <h1<?php print $a; ?></h1>
+        <h1><?php print $sum; ?></h1>
     </body>
 </html>
