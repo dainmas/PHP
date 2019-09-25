@@ -2,24 +2,27 @@
 
 $n = rand(11, 12);
 
-function Is_prime($n) {
+function is_prime($n) {
     for ($x = 2; $x < $n; $x++) {
         if ($n % $x == 0) {
             return false;
         }      
     }
+    
     return true;
 }
  
-$p = Is_prime($n);
-
-if ($p == 0) {
+//galima parasyti taip:
+//$text = "$n " . (is_prime($n) ? 'yra' : 'nėra') . ' pirminis skaičius';
+//vietoj sito:
+if (is_prime($n)) {
    $text= "$n nėra pirminis skaičius";
 } else {
    $text = "$n yra pirminis skaičius";
 }
 
 ?>
+
 <html>
     <head>
         <title>function</title>
