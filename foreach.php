@@ -36,9 +36,17 @@ var_dump($drinks);
 foreach ($drinks as $drink_id => $drink) {
 //$drinks['$drink_id']['price_retail'] = 0;
     $drinks[$drink_id]['price_retail'] = $drink['price_stock'] - ($drink['price_stock'] * $drink['discount'] / 100);
+    
+    
+    if ($drink['in_stock']) {
+        $drinks[$drink_id]['stock_class'] = 'in-stock';
+        $drinks[$drink_id]['stock_text'] = 'Yra sandėlyje';
+    } else {
+        $drinks[$drink_id]['stock_class'] = 'out-of-stock';  
+        $drinks[$drink_id]['stock_text'] = 'Nėra sandėlyje';        
+    }
 }
-$true = 'Yra sandėlyje';
-$false = 'Nėra sandėlyje';
+
 
 ?>
 <html>
@@ -95,12 +103,12 @@ $false = 'Nėra sandėlyje';
                 text-align: center;
             }
 
-            .green{
+            .in-stock {
                 color: green;
                 text-align: center;
             }
 
-            .red{
+            .out-of-stock{
                 color: red;
                 text-align: center;
             }
@@ -120,11 +128,7 @@ $false = 'Nėra sandėlyje';
                     <div class="drink-image" style="width: 100%; height: 300px; background-image:url( <?php print $drink['img']; ?>);  background-image: cover; background-position: center;"></div>
                     <div class="container">
                         <p><?php print $drinks[$drink_id]['name']; ?></p>
-                        <?php if ($drink['in_stock'] == true): ?> 
-                            <h3 class="green"><?php print $true; ?> </h3>
-                        <?php else: ?>
-                            <h3 class="red"><?php print $false; ?></h3>
-                        <?php endif; ?>
+                        <h3 class="<?php print $drink['stock_class']; ?>"><?php print $drink['stock_text']; ?></h3>
                     </div>
                 </div>
             <?php endforeach; ?>
