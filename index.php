@@ -1,21 +1,23 @@
 <?php
 
-$x = 1;
-$y = 2;
+$x = rand(0, 50);
 
-function sum($x, $y) {
-    return $x + $y;
+function is_prime($x) {
+    if ($x % 2 == 0 || $x % 3 == 0 || $x % 4 == 0 || $x % 5 == 0) {
+        print "$x nėra pirminis skaičius";
+    } else {
+        print "$x yra pirminis skaičius";
+    }
 }
+    $is_prime = is_prime($x);
+    
+    ?>
+    <html>
+        <head>
+            <title>function</title>
 
-$sum = "$x ir $y suma: " . sum($x, $y);
-
-?>
-<html>
-    <head>
-        <title>function</title>
-
-    </head>
-    <body>
-        <h1><?php print $sum; ?></h1>
+        </head>
+        <body>
+            <h1><?php print $is_prime; ?></h1>
     </body>
 </html>
