@@ -1,33 +1,16 @@
 <?php
 
-$n = rand(11, 12);
+function slot_run($size) {
+    $array = [];
 
-function is_prime($n) {
-    for ($x = 2; $x < $n; $x++) {
-        if ($n % $x == 0) {
-            return false;
-        }      
+    for ($i = 0; $i < $size; $i++) {
+        for ($a = 0; $a < $size; $a++) {
+            $array[$i][$a] = rand(0, 1);
+        }
     }
-    
-    return true;
-}
- 
-//galima parasyti taip:
-//$text = "$n " . (is_prime($n) ? 'yra' : 'nėra') . ' pirminis skaičius';
-//vietoj sito:
-if (is_prime($n)) {
-   $text= "$n nėra pirminis skaičius";
-} else {
-   $text = "$n yra pirminis skaičius";
-}
 
-?>
+    return $array;
+}
+$slot_machine = slot_run(3);
 
-<html>
-    <head>
-        <title>function</title>
-    </head>
-    <body>
-        <h1><?php print $text; ?></h1>
-    </body>
-</html>
+var_dump($slot_machine);
