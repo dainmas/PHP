@@ -17,9 +17,26 @@ function slot_run($size) {
     return $array;
 }
 
-$slot_machine = slot_run(3);
+function get_winning_rows($matrix) {
+    $array = [];
+    foreach ($matrix as $row_id => $row) {
+        $suma = 0;
+        foreach ($row as $column_id =>$column) {
+            var_dump($column);
+            $suma += $column;
+        }
+        if ($suma == 3 || $suma == 0) {
+            $array[] = $row_id;
+            var_dump($array);
+        }
+    }
 
+    return $array;
+}
+
+$slot_machine = slot_run(3);
 var_dump($slot_machine);
+$winners = get_winning_rows($slot_machine);
 ?>
 <html>
     <head>
@@ -65,13 +82,16 @@ var_dump($slot_machine);
         <?php foreach ($slot_machine as $row) : ?>
             <div class="row"> 
                 <?php foreach ($row as $column) : ?>
-                <?php if($column == 1): ?>
-                    <div class="<?php print 'orange' ?>"></div>
+                    <?php if ($column == 1): ?>
+                        <div class="<?php print 'orange' ?>"></div>
                     <?php else: ?>
-                    <div class="<?php print 'blue' ?>"></div>
+                        <div class="<?php print 'blue' ?>"></div>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div> 
+        <?php endforeach; ?>
+        <?php foreach ($winners as $winner) : ?>
+            <h2><?php print $winner; ?></h2>
         <?php endforeach; ?>
     </div>
 </body>
