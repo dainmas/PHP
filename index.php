@@ -1,5 +1,7 @@
 <?php
 
+$size = rand(3, 5);
+
 /**
  * 
  * @param type $size
@@ -17,26 +19,40 @@ function slot_run($size) {
     return $array;
 }
 
-function get_winning_rows($matrix) {
-    $array = [];
-    foreach ($matrix as $row_id => $row) {
-        $suma = 0;
-        foreach ($row as $column_id =>$column) {
-            var_dump($column);
-            $suma += $column;
+$matrix = slot_run($size);
+
+$matrix_display = [];
+foreach ($matrix as $row_idx => $row) {
+    $col = 0;
+    $col_1 = 0;
+
+    $matrix_display[$row_idx] = [
+        'class' => ' ',
+        'columns' => []
+    ];
+
+    foreach ($row as $column) {
+
+        if ($column == 0) {
+            $matrix_display[$row_idx]['columns'][] = [
+                'class' => 'blue',
+            ];
+            $col_1++;
+        } else {
+            $matrix_display[$row_idx]['columns'][] = [
+                'class' => 'orange',
+            ];
+            $col++;
         }
-        if ($suma == 3 || $suma == 0) {
-            $array[] = $row_id;
-            var_dump($array);
+
+        if ($col == $size || $col_1 == $size) {
+            $matrix_display[$row_idx]['class'] = 'winning';
         }
     }
-
-    return $array;
 }
 
 $slot_machine = slot_run(3);
-var_dump($slot_machine);
-$winners = get_winning_rows($slot_machine);
+
 ?>
 <html>
     <head>
@@ -47,19 +63,26 @@ $winners = get_winning_rows($slot_machine);
                 box-sizing: border-box;
             }
 
-            .row {
-
+            .row{
 
             }
+
+            .winning{
+                width: 550px;
+                border: 2px solid red;
+
+            }
+
             .column{
                 border: 1px solid grey;
                 height: 50px; 
+
             }
+
             .orange{
                 width:100px;
                 height: 100px;
                 border:1px solid grey;
-
                 display:inline-block;
                 background-color: orange;
             }
@@ -72,26 +95,18 @@ $winners = get_winning_rows($slot_machine);
                 background-color: blue;
             }
 
-
         </style>
     </style>
 </head>
 <body>
     <h1>slot run</h1>
     <div class="container">
-        <?php foreach ($slot_machine as $row) : ?>
-            <div class="row"> 
-                <?php foreach ($row as $column) : ?>
-                    <?php if ($column == 1): ?>
-                        <div class="<?php print 'orange' ?>"></div>
-                    <?php else: ?>
-                        <div class="<?php print 'blue' ?>"></div>
-                    <?php endif; ?>
+        <?php foreach ($matrix_display as $row): ?>
+            <div class="row <?php print $row['class']; ?>">
+                <?php foreach ($row['columns'] as $column): ?>
+                    <div class="column <?php print $column['class']; ?>"></div>
                 <?php endforeach; ?>
-            </div> 
-        <?php endforeach; ?>
-        <?php foreach ($winners as $winner) : ?>
-            <h2><?php print $winner; ?></h2>
+            </div>
         <?php endforeach; ?>
     </div>
 </body>
