@@ -1,32 +1,26 @@
 <?php
 
-$x = 0;
-$b = &$x;
-//panaikinam reference:
-unset($b);
-$b = 1;
+$array = ['b', 'x', 'x', 'b', 's'];
 
-print $x;
-
-
-$roll_joints = true;
-$joint1 = &$roll_joints;
-$joint2 = &$joint1;
-$joint3 = &$joint2;
-
-print $joint1 . $joint2 . $joint3 . '<br>';
-
-$sheep = ['bee'];
-//for ciklas surišantis avis
-for ($i = 0; $i < 4; $i++) {
-    $sheep[] = &$sheep[$i];
+function count_values($array, $val) {
+    $counter = 0;
+    foreach ($array as $value) {
+        if ($val == $value) {
+            $counter++;
+        }
+    }
+    return $counter;
 }
 
-//vieną avį atrišau
-foreach ($sheep as $key => $value) {
-    unset($sheep[$key]);
-    $sheep[$key] = $value;
+print count_values($array, 'x');
+
+function change_values(&$array, $val_from, $val_to) {
+    foreach ($array as &$raide) {
+        if ($raide == $val_from) {
+            $raide = $val_to;
+        }
+    }
 }
 
-$sheep[3] = 'Aš kitokia!';
-var_dump($sheep);
+change_values($array, 'x', 'X');
+var_dump($array);
