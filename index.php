@@ -1,88 +1,71 @@
 <?php
+var_dump($_POST);
+
 $form = [
-    'form_title' => 'Užpildyk formą',
     'attr' => [
         'action' => 'index.php',
-        'method' => 'POST',
-        'class' => 'my-form',
-        'id' => 'login-form'
+        'class' => 'bg-black'
     ],
+    'title' => 'Kalėdų norai',
     'fields' => [
         'first_name' => [
             'attr' => [
-                'type' => 'text',
+                'type' => 'text'
             ],
             'extra' => [
                 'attr' => [
-                    'class' => 'my-form',
-                    'id' => 'login-form',
-                    'placeholder' => 'Enter your Name'
+                    'placeholder' => 'Aurimas',
+                    'class' => 'input-text',
+                    'id' => 'first-name'
                 ]
             ],
             'label' => 'Vardas:',
-            'error' => 'Užpildykite lauką'
+            'error' => 'Vardas per trumpas!'
         ],
         'last_name' => [
             'attr' => [
-                'type' => 'text',
+                'type' => 'text'
             ],
             'extra' => [
                 'attr' => [
-                    'class' => 'my-form',
-                    'id' => 'login-form',
-                    'placeholder' => 'Enter your Last Name'
+                    'placeholder' => 'Stecenka',
+                    'class' => 'input-text',
+                    'id' => 'last-name'
                 ]
             ],
             'label' => 'Pavardė:',
-            'error' => 'Laukas tuščias'
+            'error' => 'Paliktas tuščias laukas!'
         ],
-        'amzius' => [
-            'attr' => [
-                'type' => 'number'
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'my-form',
-                    'id' => 'login-form',
-                    'placeholder' => 'Enter your Age'
-                ]
-            ],
-            'label' => 'Amžius:',
-            'error' => 'Užpildykite teisingai lauką'
-        ],
-        'selector' => [
+        'wish' => [
             'attr' => [
                 'type' => 'select',
-                'value' => 'dainora'
+                'value' => 'tv'
             ],
             'extra' => [
                 'attr' => [
-                    'class' => 'my-form',
-                    'id' => 'login-form',
-                ],
+                    'class' => 'input-select',
+                    'id' => 'wish'
+                ]
             ],
             'options' => [
-                'dainora' => 'Dainora',
-                'aurimas' => 'Aurimas',
-                'milda' => 'Milda'
+                'car' => 'BMW',
+                'tv' => 'Teliko',
+                'socks' => 'Kojinių'
             ],
-            'label' => 'Vardai:'
+            'label' => 'Kalėdom noriu:',
         ]
-            
     ],
     'buttons' => [
         'submit' => [
             'type' => 'submit',
-            'name' => 'enter',
-            'value' => 'Submit',
+            'value' => 'Siųsti'
         ],
         'reset' => [
-            'type' => 'submit',
-            'name' => 'reset',
-            'value' => 'Reset',
+            'type' => 'reset',
+            'value' => 'Išvalyti'
         ]
     ],
-    'message' => 'Message!'
+    'message' => 'Formos Message!'
 ];
 
 /**
@@ -92,31 +75,43 @@ $form = [
  */
 function html_attr($attr) {
     $html_attr_array = [];
-    
+
     foreach ($attr as $attribute_key => $attribute_value) {
-        $html_attr_array[] = strtr('@key = "@value"', [
+        $html_attr_array[] = strtr('@key="@value"', [
             '@key' => $attribute_key,
             '@value' => $attribute_value
         ]);
-        //strtr suformuoja kokį stringą nori matyti ,pvz.strtr('#key turi #value $, $masyvas')
-        //@ arba # raso, kad atskirtu, nes tai ne musu $key foreache
-        //vietoj strtr būtų taip:
-//            'action = "index.php"',
-//            'method = "POST"',
-//            'class = "my-form"',
-//            'id = login-form"'
     }
-    return implode(" ", $html_attr_array);
+
+    return implode(' ', $html_attr_array);
 }
 
-var_dump($form);
+function get_filtered_input($field_indexes) {
+    var_dump($field_indexes);
+
+  $filter_parameters = [];
+    foreach ($field_indexes as  $value) {
+      
+        $filter_parameters[$value] = FILTER_SANITIZE_SPECIAL_CHARS;
+      
+    }
+    return filter_input_array(INPUT_POST, $filter_parameters);
+}
+
+$filtered_input = get_filtered_input(['first_name', 'last_name', 'wish']);
+var_dump($filtered_input);
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Form templates Require</title>
+        <title>Form Templates</title>
+        <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
+        <h1><?php print $_POST['first_name'] ?? ''; ?></h1>
+
+        <h2><?php print 'Jūsų noras išgirstas, Senelis Šaltis, atneš Jums ' . ($_POST['wish'] ?? ''); ?></h2>
         <?php require 'templates/form.tpl.php'; ?>
+
     </body>
 </html>
