@@ -17,12 +17,15 @@ if (isset($_POST['enter'])) {
         <title>Form</title>
         <style>
             .form_container{
-                width: 50%;
+                width: 40%;
                 height: 50%;
                 margin: auto;
                 border: 1px solid red;
-                text-align: left;
+                text-align: center;
                 padding: 10px;
+                background-image: url('https://kbdevstorage1.blob.core.windows.net/asset-blobs/19201_en_1');
+                background-size: cover;
+                opacity:0.5;
             }
             .container{
                 width: 50%;

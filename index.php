@@ -1,113 +1,122 @@
 <?php
-
-$size = rand(3, 5);
+$form = [
+    'form_title' => 'Užpildyk formą',
+    'attr' => [
+        'action' => 'index.php',
+        'method' => 'POST',
+        'class' => 'my-form',
+        'id' => 'login-form'
+    ],
+    'fields' => [
+        'first_name' => [
+            'attr' => [
+                'type' => 'text',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'my-form',
+                    'id' => 'login-form',
+                    'placeholder' => 'Enter your Name'
+                ]
+            ],
+            'label' => 'Vardas:',
+            'error' => 'Užpildykite lauką'
+        ],
+        'last_name' => [
+            'attr' => [
+                'type' => 'text',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'my-form',
+                    'id' => 'login-form',
+                    'placeholder' => 'Enter your Last Name'
+                ]
+            ],
+            'label' => 'Pavardė:',
+            'error' => 'Laukas tuščias'
+        ],
+        'amzius' => [
+            'attr' => [
+                'type' => 'number'
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'my-form',
+                    'id' => 'login-form',
+                    'placeholder' => 'Enter your Age'
+                ]
+            ],
+            'label' => 'Amžius:',
+            'error' => 'Užpildykite teisingai lauką'
+        ],
+        'selector' => [
+            'attr' => [
+                'type' => 'select',
+                'value' => 'dainora'
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'my-form',
+                    'id' => 'login-form',
+                ],
+            ],
+            'options' => [
+                'dainora' => 'Dainora',
+                'aurimas' => 'Aurimas',
+                'milda' => 'Milda'
+            ],
+            'label' => 'Vardai:'
+        ]
+            
+    ],
+    'buttons' => [
+        'submit' => [
+            'type' => 'submit',
+            'name' => 'enter',
+            'value' => 'Submit',
+        ],
+        'reset' => [
+            'type' => 'submit',
+            'name' => 'reset',
+            'value' => 'Reset',
+        ]
+    ],
+    'message' => 'Message!'
+];
 
 /**
- * 
- * @param type $size
- * @return type
+ * Generates HTML attributes
+ * @param array $attr
+ * @return string
  */
-function slot_run($size) {
-    $array = [];
-
-    for ($i = 0; $i < $size; $i++) {
-        for ($a = 0; $a < $size; $a++) {
-            $array[$i][$a] = rand(0, 1);
-        }
+function html_attr($attr) {
+    $html_attr_array = [];
+    
+    foreach ($attr as $attribute_key => $attribute_value) {
+        $html_attr_array[] = strtr('@key = "@value"', [
+            '@key' => $attribute_key,
+            '@value' => $attribute_value
+        ]);
+        //strtr suformuoja kokį stringą nori matyti ,pvz.strtr('#key turi #value $, $masyvas')
+        //@ arba # raso, kad atskirtu, nes tai ne musu $key foreache
+        //vietoj strtr būtų taip:
+//            'action = "index.php"',
+//            'method = "POST"',
+//            'class = "my-form"',
+//            'id = login-form"'
     }
-
-    return $array;
+    return implode(" ", $html_attr_array);
 }
 
-$matrix = slot_run($size);
-
-$matrix_display = [];
-foreach ($matrix as $row_idx => $row) {
-    $col = 0;
-    $col_1 = 0;
-
-    $matrix_display[$row_idx] = [
-        'class' => ' ',
-        'columns' => []
-    ];
-
-    foreach ($row as $column) {
-
-        if ($column == 0) {
-            $matrix_display[$row_idx]['columns'][] = [
-                'class' => 'blue',
-            ];
-            $col_1++;
-        } else {
-            $matrix_display[$row_idx]['columns'][] = [
-                'class' => 'orange',
-            ];
-            $col++;
-        }
-
-        if ($col == $size || $col_1 == $size) {
-            $matrix_display[$row_idx]['class'] = 'winning';
-        }
-    }
-}
-
-$slot_machine = slot_run(3);
-
+var_dump($form);
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>foreach</title>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-
-            .row{
-
-            }
-
-            .winning{
-                width: 550px;
-                border: 2px solid red;
-
-            }
-
-            .column{
-                border: 1px solid grey;
-                height: 50px; 
-
-            }
-
-            .orange{
-                width:100px;
-                height: 100px;
-                border:1px solid grey;
-                display:inline-block;
-                background-color: orange;
-            }
-
-            .blue{
-                width:100px;
-                height: 100px;
-                border:1px solid grey;
-                display:inline-block;
-                background-color: blue;
-            }
-
-        </style>
-    </style>
-</head>
-<body>
-    <h1>slot run</h1>
-    <div class="container">
-        <?php foreach ($matrix_display as $row): ?>
-            <div class="row <?php print $row['class']; ?>">
-                <?php foreach ($row['columns'] as $column): ?>
-                    <div class="column <?php print $column['class']; ?>"></div>
-                <?php endforeach; ?>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</body>
+        <title>Form templates Require</title>
+    </head>
+    <body>
+        <?php require 'templates/form.tpl.php'; ?>
+    </body>
 </html>
