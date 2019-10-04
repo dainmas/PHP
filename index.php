@@ -1,6 +1,4 @@
 <?php
-var_dump($_POST);
-
 $form = [
     'attr' => [
         'action' => 'index.php',
@@ -9,7 +7,6 @@ $form = [
     'title' => 'Kalėdų norai',
     'fields' => [
         'first_name' => [
-            'filter' => FILTER_SANITIZE_NUMBER_INT,
             'attr' => [
                 'type' => 'text'
             ],
@@ -21,7 +18,7 @@ $form = [
                 ]
             ],
             'label' => 'Vardas:',
-            'error' => 'Vardas per trumpas!'
+//            'error' => 'Vardas per trumpas!'
         ],
         'last_name' => [
             'attr' => [
@@ -35,12 +32,12 @@ $form = [
                 ]
             ],
             'label' => 'Pavardė:',
-            'error' => 'Paliktas tuščias laukas!'
+//            'error' => 'Paliktas tuščias laukas!'
         ],
         'wish' => [
             'attr' => [
                 'type' => 'select',
-                'value' => 'tv'
+                'value' => 'car'
             ],
             'extra' => [
                 'attr' => [
@@ -87,37 +84,47 @@ function html_attr($attr) {
     return implode(' ', $html_attr_array);
 }
 
-function get_filtered_input($form) {
+function get_form_input($form) {
     $filter_parameters = [];
 
-    foreach ($form['fields'] as $key => $value) {
-//        if (isset($value['filter'])) {
-//            $filter_parameters[$key] = $value['filter'];
-//            var_dump($value['filter']);
-//        } else {
-//            $filter_parameters[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
-//        }
-        $filter_parameters[$key] = $value['filter'] ?? FILTER_SANITIZE_SPECIAL_CHARS;
-    
+    foreach ($form['fields'] as $field_id => $field) {
+
+        $filter_parameters[$field_id] = $field['filter'] ?? FILTER_SANITIZE_SPECIAL_CHARS;
     }
+
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
 
-$filtered_input = get_filtered_input($form);
+$filtered_input = get_form_input($form);
 
 
+foreach ($form['fields'] as $field_id => &$field) {
+    $field_input = $filtered_input[$field_id];
+    $field['attr']['value'] = $field_input;
 
-var_dump($filtered_input);
+//    if ($filtered_input[$field_id]) === ' '){
+//        $field['error'] = 'Laukas negali būti tuščias!'?
+//    }
+    validate_not_emty($field_input, $field);
+    unset($field);
+
+//   $field['attr']['value'] ? $field : $field['attr']['error'];
+}
+
+function validate_not_emty($field_input, &$field) {
+    if ($field_input === '') {
+        $field['error'] = 'Laukas negali būti tuščias!';
+    }
+}
+
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Form Templates</title>
+        <title>Form Security</title>
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
-        <h2><?php print $filtered_input['wish'];?></h2>
         <?php require 'templates/form.tpl.php'; ?>
-
     </body>
 </html>
