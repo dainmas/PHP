@@ -19,6 +19,9 @@ $form = [
             ],
             'label' => 'Vardas:',
 //            'error' => 'Vardas per trumpas!'
+            'validate' => [
+                'validate_not_empty'
+            ]
         ],
         'last_name' => [
             'attr' => [
@@ -95,28 +98,34 @@ function get_form_input($form) {
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
 
-$filtered_input = get_form_input($form);
-
-
-foreach ($form['fields'] as $field_id => &$field) {
-    $field_input = $filtered_input[$field_id];
-    $field['attr']['value'] = $field_input;
-
-//    if ($filtered_input[$field_id]) === ' '){
-//        $field['error'] = 'Laukas negali būti tuščias!'?
-//    }
-    validate_not_emty($field_input, $field);
-    unset($field);
-
-//   $field['attr']['value'] ? $field : $field['attr']['error'];
-}
-
-function validate_not_emty($field_input, &$field) {
+function validate_not_empty($field_input, &$field) {
     if ($field_input === '') {
         $field['error'] = 'Laukas negali būti tuščias!';
+    } else {
+        return true;
     }
 }
 
+function validate_form(&$form) {
+    $filtered_input = get_form_input($form);
+
+    if (!empty($filtered_input)) {
+
+        foreach ($form['fields'] as $field_id => &$field) {
+            $field_input = $filtered_input[$field_id];
+            $field['attr']['value'] = $field_input;
+            
+            if (isset($field['validate'])) {
+                foreach ($field['validate'] as $value) {
+                    $value($field_input, $field);
+                }
+            }
+        }
+    }
+}
+
+validate_form($form);
+var_dump($form);
 ?>
 <html>
     <head>
@@ -125,6 +134,6 @@ function validate_not_emty($field_input, &$field) {
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
-        <?php require 'templates/form.tpl.php'; ?>
+<?php require 'templates/form.tpl.php'; ?>
     </body>
 </html>
