@@ -57,6 +57,8 @@ function form_success($filtered_input, &$form) {
     $form['message'] = 'Success!';
     $file = 'data/db.txt';
     array_to_file($filtered_input, $file);
+   
+    
 }
 
 function form_fail($filtered_input, &$form) {
@@ -77,6 +79,15 @@ function array_to_file($array, $file) {
     }
     var_dump($file);
 }
+function file_to_array($file) {
+   if (file_exists($file)){
+    $encoded_array = file_get_contents($file); 
+     return json_decode($encoded_array, true);
+}
+return false;
+}
+//f-jos kvietimas:
+var_dump(file_to_array('data/db.txt'));
 
 $filtered_input = get_filtered_input($form);
 
