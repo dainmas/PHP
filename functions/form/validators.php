@@ -53,3 +53,12 @@ function validate_is_email($field_input, &$field) {
         return true;
     }
 }
+
+function validate_password($field_input, &$field) {
+    if (strlen($field_input) > 9) {
+        $field['error'] = 'Lauke negali būti daugiau, nei 8 simboliai!';
+        return false;
+    } else {
+        return true;
+    }
+}

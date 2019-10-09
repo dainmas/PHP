@@ -1,6 +1,7 @@
 <?php
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
+
 $form = [
     'attr' => [
 //        'action' => 'index.php',
@@ -8,34 +9,34 @@ $form = [
     ],
     'title' => 'Užduotis',
     'fields' => [
-        'x' => [
-            'type' => 'number',
-            'label' => 'X*:',
+        'nickname' => [
+            'type' => 'text',
+            'label' => 'Nickname*:',
             'extra' => [
                 'attr' => [
-                    'placeholder' => 'Enter number',
+                    'placeholder' => 'Enter nickname',
                     'class' => 'input-text',
                     'id' => 'first-name'
                 ]
             ],
             'validators' => [
                 'validate_not_empty',
-                'validate_is_number'
+               
             ]
         ],
-        'y' => [
-            'type' => 'number',
-            'label' => 'Y*:',
+        'password' => [
+            'type' => 'password',
+            'label' => 'Password*:',
             'extra' => [
                 'attr' => [
-                    'placeholder' => 'Enter number',
+                    'placeholder' => 'Enter password',
                     'class' => 'input-text',
                     'id' => 'last-name'
                 ]
             ],
             'validators' => [
                 'validate_not_empty',
-                'validate_is_number'
+                'validate_password'
             ]
         ]
     ],
@@ -53,13 +54,12 @@ $form = [
 ];
 
 function form_success($filtered_input, &$form) {
-    $sum = $filtered_input['x'] + $filtered_input['y'];
-    var_dump($sum);
-    $form['message'] = "Suma: $sum";
+    
+    $form['message'] = 'You in!';
 }
 
 function form_fail($filtered_input, &$form) {
-    $form['message'] = 'Yra klaidų!';
+    $form['message'] = 'Retard alert!';
 }
 
 $filtered_input = get_form_input($form);
