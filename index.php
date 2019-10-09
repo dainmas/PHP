@@ -122,7 +122,7 @@ function form_fail($filtered_input, &$form) {
 }
 
 
-$filtered_input = get_form_input($form);
+$filtered_input = get_filtered_input($form);
 
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);

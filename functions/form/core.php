@@ -5,7 +5,7 @@ require 'validators.php';
  * @param array $form
  * @return array
  */
-function get_form_input($form) {
+function get_filtered_input($form) {
     $filter_parameters = [];
 
     foreach ($form['fields'] as $field_id => $field) {

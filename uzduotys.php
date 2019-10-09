@@ -1,4 +1,5 @@
 <?php
+
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
 
@@ -21,7 +22,6 @@ $form = [
             ],
             'validators' => [
                 'validate_not_empty',
-               
             ]
         ],
         'password' => [
@@ -54,15 +54,31 @@ $form = [
 ];
 
 function form_success($filtered_input, &$form) {
-    
-    $form['message'] = 'You in!';
+    $form['message'] = 'Success!';
+    $file = 'data/db.txt';
+    array_to_file($filtered_input, $file);
 }
 
 function form_fail($filtered_input, &$form) {
-    $form['message'] = 'Retard alert!';
+    $form['message'] = 'Yra klaidų!';
 }
 
-$filtered_input = get_form_input($form);
+function array_to_file($array, $file) {
+    $string = json_encode($array);
+    $file = file_put_contents($file, $string);
+    
+    if ($file !== false) {
+        var_dump('$file buvo įrašytas');
+        return true;
+    } else {
+        var_dump('$file buvo false');
+
+        return false;
+    }
+    var_dump($file);
+}
+
+$filtered_input = get_filtered_input($form);
 
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);
@@ -76,6 +92,6 @@ if (!empty($filtered_input)) {
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
-<?php require 'templates/form.tpl.php'; ?>
+        <?php require 'templates/form.tpl.php'; ?>
     </body>
 </html>

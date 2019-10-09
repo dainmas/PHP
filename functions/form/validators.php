@@ -40,9 +40,9 @@ function validate_is_string($field_input, &$field) {
     if (!is_string($field_input)) {
         $field['error'] = 'Įrašykite raides!';
         return false;
-    } else {
-        return true;
     }
+
+    return true;
 }
 
 function validate_is_email($field_input, &$field) {
@@ -55,8 +55,8 @@ function validate_is_email($field_input, &$field) {
 }
 
 function validate_password($field_input, &$field) {
-    if (strlen($field_input) > 9) {
-        $field['error'] = 'Lauke negali būti daugiau, nei 8 simboliai!';
+    if (strlen($field_input) < 8) {
+        $field['error'] = 'Lauke negali būti mažiau, nei 8 simboliai!';
         return false;
     } else {
         return true;
