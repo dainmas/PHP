@@ -17,27 +17,28 @@
 $id = rand(1, 999999);
 $apsilankymai = 0;
 
-
 if (!empty($_COOKIE)) {
     $apsilankymai = $_COOKIE['apsilankymai'] + 1;
     $id = $_COOKIE['user_id'];
 
 }
-
-
+var_dump($_COOKIE['apsilankymai']);
 setcookie('user_id', $id, strtotime('+ 30d'), '/');
 setcookie('apsilankymai', $apsilankymai, strtotime('+ 30d'), '/');
 var_dump($_COOKIE);
+
+$h1_text = "User ID: $id";
+$h2_text = "Visits: $apsilankymai";
 ?>
 
 <html></html>
 <head>
     <meta charset="UTF-8">
-    <title>Form Security</title>
+    <title>Cookie Visits Tracking</title>
     <link rel="stylesheet" href="includes/style.css">
 </head>
 <body>
-    <?php print "User ID: $id"; ?>
-    <?php print "Apsilankymai:  $apsilankymai"; ?>
+    <?php print $h1_text; ?>
+    <?php print $h2_text; ?>
 </body>
 </html>
