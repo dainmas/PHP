@@ -76,7 +76,7 @@ function form_fail($filtered_input, &$form) {
     $form['message'] = 'Yra klaidų!';
 
     $json_string = json_encode($filtered_input);
-    setcookie('form-fiels', $json_string, time() + 3600, '/');
+    setcookie('form-fields', $json_string, time() + 3600, '/');
 }
 
 
