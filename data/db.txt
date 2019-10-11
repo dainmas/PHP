@@ -1,1 +1,1 @@
-{"nickname":"ggfdf","password":"ggffdsdassasasAASa"}
+[{"nickname":"test","password":"123456789"}]
