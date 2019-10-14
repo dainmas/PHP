@@ -1,5 +1,4 @@
 <?php
-
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
@@ -14,16 +13,18 @@ $form = [
         'nickname' => [
             'type' => 'text',
             'label' => 'Team name*:',
+            
             'extra' => [
                 'attr' => [
                     'placeholder' => 'Team name',
                     'class' => 'input-text',
-                    'id' => 'first-name'
                 ]
             ],
+            'players' => [],
             'validators' => [
                 'validate_not_empty',
             ]
+            
         ]
     ],
     'buttons' => [
@@ -41,6 +42,54 @@ $form = [
     ]
 ];
 
+
+
+//$teams = [
+//    [
+//      'team_name'  => 'kazkokie',
+//        'players' => [
+//            [
+//                'nickname' => 'killer',
+//                'score' => 10
+//            ],
+//            [
+//                'nickname' => 'thriller',
+//                'score' => 10
+//            ]
+//        ]
+//    ],
+//    [
+//      'team_name'  => 'nekazkokie',
+//        'players' => [
+//            [
+//                'nickname' => 'winner',
+//                'score' => 10
+//            ],
+//            [
+//                'nickname' => 'newinner',
+//                'score' => 10
+//            ]
+//        ]
+//    ],   
+//];
+function form_success($filtered_input, &$form) {
+	$form['message'] = 'success!';
+    $db_data = file_to_array('data/teams.txt');
+	
+    if (!empty($db_data)) {
+        $teams = $db_data;
+    }
+	
+    $teams[] = $filtered_input;
+    array_to_file($teams, 'data/teams.txt');
+}
+if (file_exists('data/teams.txt')) {
+	$db = file_to_array('data/teams.txt');
+}
+$filtered_input = get_filtered_input($form);
+if (!empty($filtered_input)) {
+    validate_form($filtered_input, $form);
+}
 ?>
 <html>
     <head>
