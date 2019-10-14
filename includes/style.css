@@ -1,11 +1,25 @@
+
+body{
+ background-image:url('https://cdn.ultraplay.com/uploads/products/Early_Childhood_0291-0316.jpg');
+ background-size: cover;
+
+}
+
 .error {
     color: red;
 }
-
-.input-text{
-    display: block;
+div{
+ display: inline-block;  
+ text-align: center;
+ 
 }
+.input-text{
 
+}
+.submit{
+    background-color: yellow;
+    
+}
 table,
 th,
 td{
