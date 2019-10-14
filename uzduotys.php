@@ -43,7 +43,8 @@ $form = [
     'buttons' => [
         'submit' => [
             'type' => 'submit',
-            'value' => 'Siųsti'
+            'value' => 'Siųsti',
+//            'disabled'=> ''
         ],
     ],
     'message' => 'Užpildyk formą!',
@@ -69,7 +70,11 @@ function form_success($filtered_input, &$form) {
 
     //nustato cookie:
     setcookie('user', $filtered_input['nickname'], time() + 3600, '/');
+    setcookie('user_password', $filtered_input['password'], time() + 3600, '/');
+
     $_COOKIE['user'] = $filtered_input['nickname'];
+    $_COOKIE['user_password'] = $filtered_input['password'];
+    
 }
 
 function form_fail($filtered_input, &$form) {
@@ -77,18 +82,33 @@ function form_fail($filtered_input, &$form) {
 
     $json_string = json_encode($filtered_input);
     setcookie('form-fields', $json_string, time() + 3600, '/');
+
+
+    if (!isset($_COOKIE['submitted'])) {
+        $submitted = 1;
+    } else {
+        $submitted = $_COOKIE['submitted'];
+
+        if ($_COOKIE['submitted'] < 3) {
+            $submitted++;
+        } else {
+            $form['message'] = 'Per daug kartų registruojiesi!';
+            $form['buttons']['submit']['disabled'] = '';         
+        }
+    }
+    
+    setcookie('submitted', $submitted, time() + 300, '/');
+    var_dump($submitted);
 }
-
-
-
+   var_dump($_COOKIE);
 $filtered_input = get_filtered_input($form);
 
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);
 }
-var_dump($_COOKIE);
+
 //istrinam cookies
-setcookie('cookiename', '', time() - 1, '/');
+//setcookie('cookiename', '', time() - 1, '/');
 
 /**
  * Jei user'is turi cookie su nepavykusios
@@ -113,6 +133,7 @@ if (file_exists('data/db.txt')) {
     $db = file_to_array('data/db.txt');
 }
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -120,6 +141,9 @@ if (file_exists('data/db.txt')) {
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
+        <!--Jei user'is buvo prisijungęs - bus rodomas table-->
+<!--        Laikinai perkeliau, kad rodytų kartu:-->
+<?php require 'templates/form.tpl.php'; ?>
         <?php if (isset($_COOKIE['user'])): ?>
             <table>
                 <thead>
@@ -128,16 +152,16 @@ if (file_exists('data/db.txt')) {
                         <th>Password</th>
                     </tr>
                 </thead>
-                <?php foreach ($db ?? [] as $user) : ?>
+    <?php foreach ($db ?? [] as $user) : ?>
                     <tr>
                         <td><?php print $user['nickname']; ?></td>
                         <td><?php print $user['password']; ?></td>                    
                     </tr>
-                <?php endforeach; ?>
+    <?php endforeach; ?>
             </table>
             <!--Jei user'is svetainėje pirmą kartą - bus rodoma forma-->
-        <?php else: ?>
-            <?php require 'templates/form.tpl.php'; ?>
+<?php else: ?>
+<!--<?php require 'templates/form.tpl.php'; ?>-->
         <?php endif; ?>
     </body>
 </html>

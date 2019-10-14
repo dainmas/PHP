@@ -12,7 +12,6 @@ function get_filtered_input($form) {
 
         $filter_parameters[$field_id] = $field['filter'] ?? FILTER_SANITIZE_SPECIAL_CHARS;
     }
-var_dump($filter_parameters);
 
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
@@ -20,6 +19,7 @@ var_dump($filter_parameters);
 
 function validate_form($filtered_input, &$form) {
     $success = true;
+    
     foreach ($form['fields'] as $field_id => &$field) {
         $field_input = $filtered_input[$field_id];
         $field['value'] = $field_input;
