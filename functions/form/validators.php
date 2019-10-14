@@ -62,3 +62,19 @@ function validate_password($field_input, &$field) {
         return true;
     }
 }
+
+function validate_team($field_input, &$field) {
+    //masyva is duonbazes gaunam:
+    $teams = file_to_array('data/teams.txt');
+    var_dump($teams);
+
+    if (!empty($teams)) {
+        foreach ($teams as $value) {
+            if ($value['team'] == $field_input) {
+                $field['error'] = 'Tokia komanda jau egzistuoja';
+                return false;
+            }
+        }
+    }
+    return true;
+}

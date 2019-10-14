@@ -16,7 +16,12 @@ function get_filtered_input($form) {
     return filter_input_array(INPUT_POST, $filter_parameters);
 }
 
-
+/**
+ *KVIEČIA VALIDATORIUS KIEKVIENAM FORMOS FIELDUI
+ * @param array $filtered_input
+ * @param array $form
+ * @return boolean
+ */
 function validate_form($filtered_input, &$form) {
     $success = true;
     
@@ -26,6 +31,7 @@ function validate_form($filtered_input, &$form) {
 
 //        if (isset($field['validators'])) {
             foreach ($field['validators'] ?? [] as $validator) {
+                //kviecia fu-jas:
                 $is_valid = $validator($field_input, $field);
                 if (!$is_valid) {
                     $success = false;

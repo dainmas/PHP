@@ -1,1 +1,1 @@
-[{"nickname":"test"},{"nickname":"test"},{"nickname":"test"}]
+[{"team":"dfgdfgghh","players":[]}]
