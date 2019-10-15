@@ -1,1 +1,1 @@
-[{"team":"dfgdfgghh","players":[]}]
+[{"team":"Lietrytis","players":["zuikis","zuikutis"]},{"team":"zalgiris","players":["lape","lapiukas"]}]

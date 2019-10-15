@@ -6,7 +6,7 @@ require 'functions/file.php';
 
 $form = [
     'attr' => [
-//        'action' => 'index.php',
+//        'action' => 'create.php',
         'class' => 'bg-black'
     ],
     'title' => 'Žaidimas',
@@ -70,12 +70,16 @@ $form = [
 //    ],   
 //];
 function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
-    print 'veikia';
     $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+    //kai kuriam komanda padarom masyva:
     $filtered_input['players'] = [];
+    
     $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
+    
     array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
-  
+
+    //kad išstumtų kitur į join.php 
+    header('Location: join.php');
 }
 
 function form_fail($filtered_input, &$form) {
@@ -90,7 +94,7 @@ if (!empty($filtered_input)) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Žaidimas</title>
+        <title>Žaidimas. Create</title>
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>

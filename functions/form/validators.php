@@ -66,13 +66,31 @@ function validate_password($field_input, &$field) {
 function validate_team($field_input, &$field) {
     //masyva is duonbazes gaunam:
     $teams = file_to_array('data/teams.txt');
-    var_dump($teams);
+   
 
     if (!empty($teams)) {
         foreach ($teams as $value) {
-            if ($value['team'] == $field_input) {
+            if (strtoupper($value['team']) == strtoupper($field_input)) {
                 $field['error'] = 'Tokia komanda jau egzistuoja';
                 return false;
+            }
+        }
+    }
+    return true;
+}
+
+function validate_player($field_input, &$field) {
+    //komandų masyva is duonbazes gaunam:
+    $teams = file_to_array('data/teams.txt');
+  
+    if (!empty($teams)) {
+        foreach ($teams as $team) {
+            foreach ($team['players'] as $player) {
+             
+                if (strtoupper($player) == strtoupper($field_input)) {
+                    $field['error'] = 'Toks žaidėjas jau egzistuoja';
+                    return false;
+                }
             }
         }
     }
