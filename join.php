@@ -129,9 +129,12 @@ if (!empty($filtered_input)) {
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
+        <?php if (isset($_COOKIE['nickname'])): ?>
+         <?php print $form['message']; ?>
+        <?php else:?>
         <div class="laukas">
             <?php require 'templates/form.tpl.php'; ?>
         </div>
-        
+        <?php endif; ?>
     </body>
 </html>
