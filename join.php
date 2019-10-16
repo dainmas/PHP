@@ -79,7 +79,7 @@ function validate_player($field_input, &$field) {
 
 
 function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
-    print 'veikia';
+  $form['message']= 'Labas, žaidėjau '. $filtered_input['player']. ', jau esi komandoje ' . $filtered_input['team']. '!'; 
     $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as &$team) {
@@ -132,5 +132,6 @@ if (!empty($filtered_input)) {
         <div class="laukas">
             <?php require 'templates/form.tpl.php'; ?>
         </div>
+        
     </body>
 </html>
