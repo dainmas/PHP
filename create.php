@@ -69,6 +69,24 @@ $form = [
 //        ]
 //    ],   
 //];
+
+
+function validate_team($field_input, &$field) {
+    //masyva is duonbazes gaunam:
+    $teams = file_to_array('data/teams.txt');
+   
+
+    if (!empty($teams)) {
+        foreach ($teams as $value) {
+            if (strtoupper($value['team']) == strtoupper($field_input)) {
+                $field['error'] = 'Tokia komanda jau egzistuoja';
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
     $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
     //kai kuriam komanda padarom masyva:

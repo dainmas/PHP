@@ -58,20 +58,49 @@ $form = [
     ]
 ];
 
+
+function validate_player($field_input, &$field) {
+    //komandų masyva is duonbazes gaunam:
+    $teams = file_to_array('data/teams.txt');
+  
+    if (!empty($teams)) {
+        foreach ($teams as $team) {
+            foreach ($team['players'] as $player) {
+             
+                if (strtoupper($player['nickname']) == strtoupper($field_input)) {
+                    $field['error'] = 'Toks žaidėjas jau egzistuoja';
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+
 function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
     print 'veikia';
     $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as &$team) {
         if ($team['team'] === $filtered_input['team']) {
-            $team['players'][] = $filtered_input['player'];
+            $team['players'][] = [
+                'nickname'=> $filtered_input['player'],
+                 'score'=> '0'   
+                    ];
         }
-        unset($team);
+//        unset($team);
     }
 
     array_to_file($teams, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+            
+    //nustato cookie:
+//    var_dump($filtered_input);
+    setcookie('team', $filtered_input['team'], time() + 3600, '/');
+    setcookie('nickname', $filtered_input['player'], time() + 3600, '/');
+    
 }
-
+  var_dump($_COOKIE);
 function get_options() {
     $teams = file_to_array('data/teams.txt');
 
@@ -82,7 +111,7 @@ function get_options() {
         return $team_names;
     }
 }
-
+//var_dump($_POST);
 function form_fail($filtered_input, &$form) { //vykdoma, jei forma užpildyta neteisingai
     $form['message'] = 'Yra klaidų!';
 }
