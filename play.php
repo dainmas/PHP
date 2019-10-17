@@ -28,20 +28,19 @@ $form = [
 ];
 
 function validate_kick($filtered_input, &$form) {
-    return true;
+    var_dump("veikia");
 
+    $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as $team) {
         foreach ($team['players'] as $player) {
-
             if (strtoupper($player['nickname']) == strtoupper($_COOKIE['cookie_nickname'])) {
-
                 return true;
             }
         }
     }
-    return false;
-    $field['error'] = 'Iš kokių krūmų tu iššokai, eik registruotis!';
+
+    $form['message'] = 'Iš kokių krūmų tu iššokai, eik registruotis!';
 }
 
 function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
@@ -63,6 +62,7 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
     array_to_file($teams, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
     $form['message'] = "Spyris įskaitytas ({$player['score']})";
 }
+
 var_dump(get_form_action());
 //ar buvo paspaustas butent submit mygtukas, tada kvieciam validate form f-ja
 if (get_form_action() == 'submit') {
