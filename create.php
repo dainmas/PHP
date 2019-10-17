@@ -74,7 +74,7 @@ $form = [
 function validate_team($field_input, &$field) {
     //masyva is duonbazes gaunam:
     $teams = file_to_array('data/teams.txt');
-   
+
 
     if (!empty($teams)) {
         foreach ($teams as $value) {
@@ -91,11 +91,10 @@ function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyt
     $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
     //kai kuriam komanda padarom masyva:
     $filtered_input['players'] = [];
-    
-    $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
-    
-    array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
 
+    $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
+
+    array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
     //kad išstumtų kitur į join.php 
     header('Location: join.php');
 }
@@ -103,11 +102,13 @@ function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyt
 function form_fail($filtered_input, &$form) {
     $form['message'] = 'Yra klaidų!';
 }
+
 $filtered_input = get_filtered_input($form);
 
 if (!empty($filtered_input)) {
     $success = validate_form($filtered_input, $form);
 }
+
 ?>
 <html>
     <head>
@@ -116,8 +117,9 @@ if (!empty($filtered_input)) {
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
+        <?php require 'navigation.php';?>
         <div class="laukas">
-<?php require 'templates/form.tpl.php'; ?>
+            <?php require 'templates/form.tpl.php'; ?>
         </div>
     </body>
 </html>

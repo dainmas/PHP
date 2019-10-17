@@ -4,6 +4,9 @@ require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
 
+session_start();
+
+
 
 $form = [
     'attr' => [
@@ -59,11 +62,11 @@ $form = [
 ];
 
 
-if(empty(get_options())){
-     header('Location: create.php');
-     exit;
+if (empty(get_options())) {
+    header('Location: create.php');
+    exit;
 }
-    
+
 function validate_player($field_input, &$field) {
     //komandų masyva is duonbazes gaunam:
     $teams = file_to_array('data/teams.txt');
@@ -82,7 +85,6 @@ function validate_player($field_input, &$field) {
 }
 
 function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
-  
     $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as &$team) {
@@ -97,8 +99,11 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
     array_to_file($teams, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
     //nustato cookie:
 //    var_dump($filtered_input);
-    setcookie('cookie_team', $filtered_input['team'], time() + (86400 * 30), '/');
-    setcookie('cookie_nickname', $filtered_input['player'], time() + (86400 * 30), '/');
+    $_SESSION['cookie_team'] = $filtered_input['team'];
+    $_SESSION['cookie_nickname'] = $filtered_input['player'];
+
+//    setcookie('cookie_team', $filtered_input['team'], time() + (86400 * 30), '/');
+//    setcookie('cookie_nickname', $filtered_input['player'], time() + (86400 * 30), '/');
 }
 
 function get_options() {
@@ -123,8 +128,8 @@ if (!empty($filtered_input)) {
     $success = validate_form($filtered_input, $form);
 }
 
-if(isset($_COOKIE['cookie_nickname'])){
-     $text = 'Labas, žaidėjau ' . $_COOKIE['cookie_nickname'] . ', jau esi komandoje ' . $_COOKIE['cookie_team'] . '!';
+if (isset($_SESSION['cookie_nickname'])) {
+    $text = 'Labas, žaidėjau ' . $_SESSION['cookie_nickname'] . ', jau esi komandoje ' . $_SESSION['cookie_team'] . '!';
 }
 ?>
 <html>
@@ -134,12 +139,22 @@ if(isset($_COOKIE['cookie_nickname'])){
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body>
-<?php if (isset($_COOKIE['cookie_nickname'])): ?>
-        <h1><?php print $text; ?></h1>
+       <?php require 'navigation.php';?>
+
+        <?php if (isset($_SESSION['cookie_nickname'])): ?>
+            <h1 class="explode"><?php print $text; ?></h1>
         <?php else: ?>
             <div class="laukas">
-            <?php require 'templates/form.tpl.php'; ?>
+                <?php require 'templates/form.tpl.php'; ?>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
+        <footer>
+            <div id="marco">
+                <div id="cielo"></div>
+                <div id="luna"></div>
+                <div id="gato"></div>
+                <div id="muro"></div>
+                <div id="edificios"></div>
+        </footer>
     </body>
 </html>

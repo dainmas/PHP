@@ -3,7 +3,11 @@ require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
 
-if (empty($_COOKIE)) {
+session_start();
+
+
+
+if (empty($_SESSION)) {
     header('Location: join.php');
     exit;
 }
@@ -34,7 +38,7 @@ function validate_kick($filtered_input, &$form) {
 
     foreach ($teams as $team) {
         foreach ($team['players'] as $player) {
-            if (strtoupper($player['nickname']) == strtoupper($_COOKIE['cookie_nickname'])) {
+            if (strtoupper($player['nickname']) == strtoupper($_SESSION['cookie_nickname'])) {
                 return true;
             }
         }
@@ -48,10 +52,10 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
 
 
     foreach ($teams as &$team) {
-        if ($team['team'] === $_COOKIE['cookie_team']) {
+        if ($team['team'] === $_SESSION['cookie_team']) {
             foreach ($team['players'] as &$player) {
 //                var_dump($players);
-                if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+                if ($player['nickname'] == $_SESSION['cookie_nickname']) {
                     $player['score'] ++;
                     var_dump($player['score']);
                 }
@@ -69,15 +73,17 @@ if (get_form_action() == 'submit') {
     validate_form([], $form);
 }
 
-$text = 'Go for it, ' . $_COOKIE['cookie_nickname'];
+$text = 'Go for it, ' . $_SESSION['cookie_nickname'];
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Žaidimas. Join</title>
+        <title>Žaidimas. Play</title>
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body class="bg">
+        <?php require 'navigation.php';?>
+
         <h1 class="text"><?php print $text; ?></h1>
         <div class="laukas">
             <?php require 'templates/form.tpl.php'; ?>
