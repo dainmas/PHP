@@ -3,9 +3,13 @@ require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
 
+if (empty($_COOKIE)) {
+    header('Location: join.php');
+    exit;
+}
 
 $form = [
-//    'fields' => [],
+    'fields' => [],
     'buttons' => [
         'submit' => [
             'type' => 'submit',
@@ -14,32 +18,55 @@ $form = [
 //            'disabled'=> ''
         ],
     ],
+    'validators' => [
+        'validate_kick',
+    ],
     'callbacks' => [
         'success' => 'form_success',
 //        'fail' => 'form_fail'
     ]
 ];
 
-function form_success() { // vykdoma, jeigu forma uzpildyta teisingai
-    $players = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+function validate_kick($filtered_input, &$form) {
+    return true;
 
-    if(isset($_POST['submit'])) {
-        form_success();
 
-        foreach ($teams as &$team) {
-            if ($team['team'] === $_COOKIE['cookie_team']){
-               foreach($team['players'] as &$player){
-//                   var_dump($players);    
-                   if($player['nickname']=== $_COOKIE['cookie_nickname']){
-                       $player['score']++;
-                   }
-               } 
+    foreach ($teams as $team) {
+        foreach ($team['players'] as $player) {
+
+            if (strtoupper($player['nickname']) == strtoupper($_COOKIE['cookie_nickname'])) {
+
+                return true;
             }
         }
-        unset($team);
     }
+    return false;
+    $field['error'] = 'Iš kokių krūmų tu iššokai, eik registruotis!';
+}
 
+function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
+    $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+
+
+    foreach ($teams as &$team) {
+        if ($team['team'] === $_COOKIE['cookie_team']) {
+            foreach ($team['players'] as &$player) {
+//                var_dump($players);
+                if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+                    $player['score'] ++;
+                    var_dump($player['score']);
+                }
+            }
+        }
+    }
+    unset($team);
     array_to_file($teams, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+    $form['message'] = "Spyris įskaitytas ({$player['score']})";
+}
+var_dump(get_form_action());
+//ar buvo paspaustas butent submit mygtukas, tada kvieciam validate form f-ja
+if (get_form_action() == 'submit') {
+    validate_form([], $form);
 }
 
 $text = 'Go for it, ' . $_COOKIE['cookie_nickname'];
@@ -53,7 +80,7 @@ $text = 'Go for it, ' . $_COOKIE['cookie_nickname'];
     <body class="bg">
         <h1 class="text"><?php print $text; ?></h1>
         <div class="laukas">
-<?php require 'templates/form.tpl.php'; ?>
+            <?php require 'templates/form.tpl.php'; ?>
         </div>
     </body>
 </html>

@@ -58,6 +58,12 @@ $form = [
     ]
 ];
 
+
+if(empty(get_options())){
+     header('Location: create.php');
+     exit;
+}
+    
 function validate_player($field_input, &$field) {
     //komandų masyva is duonbazes gaunam:
     $teams = file_to_array('data/teams.txt');
