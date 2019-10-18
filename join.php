@@ -149,12 +149,7 @@ if (isset($_SESSION['cookie_nickname'])) {
             </div>
         <?php endif; ?>
         <footer>
-            <div id="marco">
-                <div id="cielo"></div>
-                <div id="luna"></div>
-                <div id="gato"></div>
-                <div id="muro"></div>
-                <div id="edificios"></div>
+                <div class="katulis"></div>
         </footer>
     </body>
 </html>

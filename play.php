@@ -67,7 +67,7 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
     $form['message'] = "Spyris įskaitytas ({$player['score']})";
 }
 
-var_dump(get_form_action());
+//var_dump(get_form_action());
 //ar buvo paspaustas butent submit mygtukas, tada kvieciam validate form f-ja
 if (get_form_action() == 'submit') {
     validate_form([], $form);

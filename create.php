@@ -70,11 +70,9 @@ $form = [
 //    ],   
 //];
 
-
 function validate_team($field_input, &$field) {
     //masyva is duonbazes gaunam:
     $teams = file_to_array('data/teams.txt');
-
 
     if (!empty($teams)) {
         foreach ($teams as $value) {
