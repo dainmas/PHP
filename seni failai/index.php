@@ -6,7 +6,7 @@ $form = [
         'action' => 'index.php',
         'class' => 'bg-black'
     ],
-    'title' => 'Kalėdų norai',
+    'title' => 'Kal?d? norai',
     'fields' => [
         'first_name' => [
             'type' => 'text',
@@ -27,7 +27,7 @@ $form = [
         'last_name' => [
             'type' => 'text',
             'value' => '',
-            'label' => 'Pavardė*:',
+            'label' => 'Pavard?:',
             'extra' => [
                 'attr' => [
                     'placeholder' => 'Enter your last name',
@@ -35,7 +35,7 @@ $form = [
                     'id' => 'last-name'
                 ]
             ],
-//            'error' => 'Paliktas tuščias laukas!'
+//            'error' => 'Paliktas tuš�?ias laukas!'
             'validators' => [
                 'validate_not_empty',
             ]
@@ -51,7 +51,7 @@ $form = [
                     'id' => 'age'
                 ]
             ],
-//            'error' => 'Paliktas tuščias laukas!'
+//            'error' => 'Paliktas tu�?ias laukas!'
             'validators' => [
                 'validate_not_empty',
                 'validate_is_number',
@@ -70,7 +70,7 @@ $form = [
                     'id' => 'email'
                 ]
             ],
-//            'error' => 'Paliktas tuščias laukas!'
+//            'error' => 'Paliktas tuš�?ias laukas!'
             'validators' => [
                 'validate_not_empty',
                 'validate_is_email'
@@ -78,8 +78,8 @@ $form = [
         ],
         'wish' => [
             'type' => 'select',
-            'value' => 'car', //čia įrašome 'option' indeksą, by default bus tas selected
-            'label' => 'Kalėdom noriu:',
+            'value' => 'car', //�?ia įrašome 'option' indeksą, by default bus tas selected
+            'label' => 'Kal?dom noriu:',
             'extra' => [
                 'attr' => [
                     'class' => 'input-select',
@@ -89,7 +89,7 @@ $form = [
             'options' => [
                 'car' => 'BMW',
                 'tv' => 'Teliko',
-                'socks' => 'Kojinių'
+                'socks' => 'Kojini?'
             ],
             'validators' => [
                 'validate_not_empty',
@@ -103,10 +103,10 @@ $form = [
         ],
         'reset' => [
             'type' => 'reset',
-            'value' => 'Išvalyti'
+            'value' => 'I�valyti'
         ]
     ],
-    'message' => 'Užpildyk formą!',
+    'message' => 'U�pildyk form?!',
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'

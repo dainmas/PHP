@@ -1,9 +1,21 @@
 
-body{
+/*body{
     background-image:url('https://cdn.ultraplay.com/uploads/products/Early_Childhood_0291-0316.jpg');
     background-size: cover;
     overflow: hidden;
+}*/
+
+body{
+    background-image:url('http://eskipaper.com/images/ocean-1.jpg');
+    background-size: cover;
+    overflow: hidden;
 }
+.formos-fonas{
+    width: 400px;
+    margin:auto;
+    background-color: white;
+}
+
 .bg{
     background-image: url('https://g3.dcdn.lt/images/pix/futbolas-lietuva-slovenija-71764680.jpg');
     background-size: cover;
@@ -13,7 +25,7 @@ body{
 }
 
 div{
-    display: inline-block;  
+    display: block;  
     text-align: center;
     color: white;
 }

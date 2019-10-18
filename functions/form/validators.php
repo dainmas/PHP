@@ -2,7 +2,7 @@
 
 function validate_not_empty($field_input, &$field) {
     if ($field_input === '') {
-        $field['error'] = 'Laukas negali būti tuščias!';
+        $field['error'] = 'Laukas negali b?ti tu�?ias!';
         return false;
     } else {
         return true;
@@ -11,7 +11,7 @@ function validate_not_empty($field_input, &$field) {
 
 function validate_is_number($field_input, &$field) {
     if (!is_numeric($field_input)) {
-        $field['error'] = 'Turi būti įrašytas skaičius!';
+        $field['error'] = 'Turi b?ti u�ra�ytas skai?ius!';
         return false;
     } else {
         return true;
@@ -20,7 +20,7 @@ function validate_is_number($field_input, &$field) {
 
 function validate_is_positive($field_input, &$field) {
     if ($field_input < 0) {
-        $field['error'] = 'Privalo būti teigiamas skaičius!';
+        $field['error'] = 'Privalo b?ti teigiamas skai?ius!';
         return false;
     } else {
         return true;
@@ -29,7 +29,7 @@ function validate_is_positive($field_input, &$field) {
 
 function validate_max_120($field_input, &$field) {
     if ($field_input > 120) {
-        $field['error'] = 'Skaičius turi būti mažesnis, negu 120!';
+        $field['error'] = 'Skai?ius turi b?ti ma�esnis, negu 120!';
         return false;
     } else {
         return true;
@@ -38,7 +38,7 @@ function validate_max_120($field_input, &$field) {
 
 function validate_is_string($field_input, &$field) {
     if (!is_string($field_input)) {
-        $field['error'] = 'Įrašykite raides!';
+        $field['error'] = 'U�ra�ykite raides!';
         return false;
     }
 
@@ -56,7 +56,7 @@ function validate_is_email($field_input, &$field) {
 
 function validate_password($field_input, &$field) {
     if (strlen($field_input) < 8) {
-        $field['error'] = 'Lauke negali būti mažiau, nei 8 simboliai!';
+        $field['error'] = 'Lauke negali b?ti ma�iau, nei 8 simboliai!';
         return false;
     } else {
         return true;
