@@ -63,5 +63,12 @@ function validate_password($field_input, &$field) {
     }
 }
 
-
-
+function validate_fields_match($filtered_input, &$form, $params) {
+    if (!empty($field_input)) {
+        $form['fields']['password'] == $form['fields']['password_repeat'];
+        return true;
+    } else {
+        $field['error'] = '?veskite password iš naujo!';
+        return false;
+    }
+}

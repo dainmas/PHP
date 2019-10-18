@@ -89,6 +89,12 @@ $form = [
 //            'value' => 'Išvalyti'
 //        ]
     ],
+    'validators' => [
+        'validate_fields_match' => [
+            'password', //$params
+            'password_repeat' //
+        ],
+    ],
     'message' => 'Upildyk form?!',
     'callbacks' => [
         'success' => 'form_success',
@@ -98,15 +104,14 @@ $form = [
 
 function form_success($filtered_input, &$form) {
     $form['message'] = 'Success!';
-    
-    $users_array = file_to_array('data/users.txt'); 
-  
+
+    $users_array = file_to_array('data/users.txt');
+
     $filtered_input['users'] = [];
 
-    $users_array[] = $filtered_input; 
+    $users_array[] = $filtered_input;
 
-    array_to_file($users_array, 'data/users.txt'); 
-  
+    array_to_file($users_array, 'data/users.txt');
 }
 
 function form_fail($filtered_input, &$form) {
@@ -127,9 +132,7 @@ if (!empty($filtered_input)) {
     </head>
     <body>
         <div class="formos-fonas">
-        
-            <div> <?php require 'templates/form.tpl.php'; ?></div>
-         
+            <?php require 'templates/form.tpl.php'; ?>
         </div>
     </body>
 </html>

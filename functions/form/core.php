@@ -55,10 +55,12 @@ function validate_form($filtered_input, &$form) {
         foreach ($form['validators'] ?? [] as $validator) {
             // Visiems validatoriams paduodame visus userio inputus
             // ir visą… formą…
-            $is_valid = $validator($filtered_input, $form);
-            if (!$is_valid) {
-                $success = false;
-                break;
+            foreach ($validator as $value) {
+                $is_valid = $value($filtered_input, $form);
+                if (!$is_valid) {
+                    $success = false;
+                    break;
+                }
             }
         }
     }
@@ -72,6 +74,6 @@ function validate_form($filtered_input, &$form) {
             $form['callbacks']['fail']($filtered_input, $form);
         }
     }
-    
+
     return $success;
 }
