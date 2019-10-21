@@ -86,9 +86,10 @@ function validate_email_unique($field_input, &$field) {
             $field['error'] = 'Toks naudotojas yra!';
             return false;
         } else {
-            return true;
+           
         }
     }
+     return true;
 }
 
 //function validate_email_unique($field_input, &$field) {

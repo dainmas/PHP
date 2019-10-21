@@ -1,6 +1,9 @@
+
 <?php
-
-
+require 'functions/form/core.php';
+require 'functions/html/generators.php';
+require 'functions/file.php';
+header('Location: login.php');
 ?>
 <html>
     <head>
