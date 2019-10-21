@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
@@ -43,7 +44,6 @@ $form = [
     'buttons' => [
         'Login' => [
             'type' => 'submit',
-            'value' => 'login',
             'class' => 'loginr',
         ],
     ],
@@ -53,31 +53,36 @@ $form = [
     ]
 ];
 
-//if (empty($_SESSION)) {
-//    header('Location: registration_form.php');
-//    exit;
-//}
-
 function validate_login($filtered_input, &$form) {
-    $users = file_to_array('data/users.txt');
-    if (!empty($users)) {
-        foreach ($users as $value) {
-            if ((strtoupper($value['email']) !== strtoupper($field_input)) && strtoupper(($value['password']) !== strtoupper($field_input))) {
-                $form['fields'][$value]['error'] = 'Tokio naudotojo nėra!';
-                return false;
+    $users_array = file_to_array('data/users.txt');
+    if (!empty($users_array)) {
+        foreach ($users_array as $user) {
+            if (strtoupper($user['email']) === strtoupper($filtered_input['email']) && $user['password'] === $filtered_input['password']) {
+                return true;
             }
         }
-        return true;
+        $form['fields']['password']['error'] = 'Tokio naudotojo nėra!';
+        return false;
     }
 }
 
 function form_success($filtered_input, &$form) {
+    $users_array = file_to_array('data/users.txt');
+    
+    if (!empty($users_array)) {
+        foreach ($users_array as $user) {
+            if (strtoupper($user['email']) === strtoupper($filtered_input['email'])) {
+                $_SESSION['cookie_user_name'] = $user['full_name'];
+            }
+        }
+    }
     
     $_SESSION['cookie_email'] = $filtered_input['email'];
-  
-
+    $_SESSION['cookie_password'] = $filtered_input['password'];
+    
     //    setcookie('cookie_email', $filtered_input['email'], time() + (86400 * 30), '/');
-    header('Location: registration_form.php');
+
+    header('Location: index.php');
 }
 
 function form_fail($filtered_input, &$form) {
@@ -89,7 +94,6 @@ $filtered_input = get_filtered_input($form);
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);
 }
-
 ?>
 <html>
     <head>
@@ -98,7 +102,7 @@ if (!empty($filtered_input)) {
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body class="registracion-bg">
-         <?php require 'navigation.php';?>
+        <?php require 'navigation.php'; ?>
         <div class="formos-fonas">
             <div><?php require 'templates/form.tpl.php'; ?></div>>
         </div>

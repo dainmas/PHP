@@ -50,7 +50,7 @@ function validate_form($filtered_input, &$form) {
             }
         }
     }
-
+    var_dump($success);
     // Visos formos validacija
     if ($success) {
 

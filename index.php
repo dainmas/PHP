@@ -1,9 +1,19 @@
 
 <?php
+session_start();
+
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
-header('Location: login.php');
+
+var_dump($_SESSION);
+
+if (isset($_SESSION['cookie_email'])) {
+    $text = 'Sveiki sugrįžę, ' . $_SESSION['cookie_user_name'];
+}else {
+    $text = 'Jūs neprisijungęs.';
+}
+
 ?>
 <html>
     <head>
@@ -12,12 +22,10 @@ header('Location: login.php');
         <link rel="stylesheet" href="includes/style.css">
     </head>
     <body class="registracion-bg">
-         <?php require 'navigation.php';?>
-        <div class="formos-fonas">
-            <div><?php require 'templates/form.tpl.php'; ?></div>>
-        </div>
+<?php require 'navigation.php'; ?>
+        <h1><?php print $text; ?></h1>
+        <div><?php require 'templates/form.tpl.php'; ?></div>
     </body>
 </html>
 
-<!--        <h1>Sveiki sugrįžę <?php print $_SESSION['full_name']?></h1>
-        <h2>Jūs neprisijungęs.</h2>-->
+

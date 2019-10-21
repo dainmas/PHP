@@ -40,8 +40,8 @@ $form = [
 
             'validators' => [
                 'validate_not_empty',
-                'validate_is_email',
-                'validate_email_unique'
+//                'validate_is_email',
+//                'validate_email_unique'
             ]
         ],
         'password' => [
@@ -105,6 +105,7 @@ function form_success($filtered_input, &$form) {
     $filtered_input['users'] = [];
     $users_array[] = $filtered_input;
     array_to_file($users_array, 'data/users.txt');
+    header('Location: login.php');
    
 }
 
@@ -117,6 +118,7 @@ $filtered_input = get_filtered_input($form);
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);
 }
+
 ?>
 <html>
     <head>

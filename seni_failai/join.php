@@ -139,7 +139,7 @@ if (isset($_SESSION['cookie_nickname'])) {
         <link rel="stylesheet" href="../includes/style.css">
     </head>
     <body>
-       <?php require 'navigation.php';?>
+        <?php require 'navigation.php'; ?>
 
         <?php if (isset($_SESSION['cookie_nickname'])): ?>
             <h1 class="explode"><?php print $text; ?></h1>
@@ -149,7 +149,9 @@ if (isset($_SESSION['cookie_nickname'])) {
             </div>
         <?php endif; ?>
         <footer>
+            <div class="katulis-isvaziuoja">
                 <div class="katulis"></div>
+            </div>
         </footer>
     </body>
 </html>
