@@ -1,11 +1,11 @@
 
-/*body{
+body{
     background-image:url('https://cdn.ultraplay.com/uploads/products/Early_Childhood_0291-0316.jpg');
     background-size: cover;
     overflow: hidden;
-}*/
+}
 
-body{
+.registracion-bg{
     background-image:url('http://eskipaper.com/images/ocean-1.jpg');
     background-size: cover;
     overflow: hidden;
@@ -14,8 +14,14 @@ body{
     width: 400px;
     margin:auto;
     background-color: white;
+    margin-top: 50px;
+    padding:10px 5px;
 }
+h2{
+    color: black;
+    font-size: xx-large;
 
+}
 .bg{
     background-image: url('https://g3.dcdn.lt/images/pix/futbolas-lietuva-slovenija-71764680.jpg');
     background-size: cover;
@@ -29,25 +35,56 @@ div{
     text-align: center;
     color: white;
 }
+
 .input-text{
     height: 30px;
     border:2px solid green;
+    margin-top: 10px;
+
 }
 
 .text{
     color:white;
     text-shadow: 5px -4px  rgba(0,0,0,0.87);
 }
-
-.message{
-    color:white;
-    text-shadow: 2px -4px  rgba(0,0,0,0.87); 
+.label{
+    display:block;
+    color:black;
+    margin-top: 10px;
 }
+
 .submit{
     background-color: yellow;
     height: 30px;
 }
 
+.Registruokis{
+    background-color: green;
+    width: 200px;
+    height: 50px;
+    color:white;
+    font-size: xx-large;
+    margin-top: 20px;
+}
+
+.submit_kick{
+    width: 200px;
+    height: 50px;
+    font-size: xx-large;
+}
+
+.loginr{
+    width: 200px;
+    height: 50px;
+    font-size: xx-large;
+    background-color: blue;
+    color:white;
+    margin-top:10px;
+}
+
+.logout{
+
+}
 table,
 th,
 td{
@@ -56,20 +93,16 @@ td{
 }
 
 .message {
-    color: white;
+    color: black;
     font-size: xx-large;
     display: block;
 }
 
-.submit_kick{
-    width: 200px;
-    height: 50px;
-    font-size: xx-large;
-}
-/*.text{
+
+.text{
     color: white;
     font-size: xx-large; 
-}*/
+}
 
 .explode {
     color: white;
@@ -134,6 +167,9 @@ td{
 .topnav {
     overflow: hidden;
     background-color: rgba(122, 121, 121, 0.726);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid black;
 }
 
 .logo-container {
@@ -148,6 +184,23 @@ td{
     height: 100%;
     width: 100%;
     background-image: url('https://image.shutterstock.com/z/stock-vector-football-player-in-action-logo-ball-on-fire-penalty-kick-436997029.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10%;
+}
+
+.logor-container {
+    display: block;
+    float: left;
+    margin: 5px 1rem 5px 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.logor {
+    height: 100%;
+    width: 100%;
+    background-image: url('https://3.imimg.com/data3/IK/SJ/MY-3983481/fssai-registration-services-500x500.png');
     background-size: cover;
     background-position: center;
     border-radius: 10%;
@@ -176,9 +229,9 @@ td{
 }
 
 @media screen and (max-width: 600px) {
-    .topnav {
-        float: none;
-    }
+    /*    .topnav {
+            float: none;
+        }*/
     .topnav a, .topnav  {
         float: none;
         display: block;
@@ -190,5 +243,9 @@ td{
 
 }
 .logout{
+    height: 50px;
+}
+
+.login{
     height: 50px;
 }

@@ -1,8 +1,8 @@
 <?php
 
-require 'functions/form/core.php';
-require 'functions/html/generators.php';
-require 'functions/file.php';
+require '../functions/form/core.php';
+require '../functions/html/generators.php';
+require '../functions/file.php';
 
 $form = [
     'attr' => [
@@ -72,7 +72,7 @@ $form = [
 
 function validate_team($field_input, &$field) {
     //masyva is duonbazes gaunam:
-    $teams = file_to_array('data/teams.txt');
+    $teams = file_to_array('../data/teams.txt');
 
     if (!empty($teams)) {
         foreach ($teams as $value) {
@@ -86,13 +86,13 @@ function validate_team($field_input, &$field) {
 }
 
 function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
-    $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+    $users_array = file_to_array('../data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
     //kai kuriam komanda padarom masyva:
     $filtered_input['players'] = [];
 
     $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
 
-    array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+    array_to_file($users_array, '../data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
     //kad išstumtų kitur į join.php 
     header('Location: join.php');
 }
@@ -112,12 +112,12 @@ if (!empty($filtered_input)) {
     <head>
         <meta charset="UTF-8">
         <title>Žaidimas. Create</title>
-        <link rel="stylesheet" href="includes/style.css">
+        <link rel="stylesheet" type="text/css" href="../includes/style.css">
     </head>
     <body>
         <?php require 'navigation.php';?>
         <div class="laukas">
-            <?php require 'templates/form.tpl.php'; ?>
+            <?php require '../templates/form.tpl.php'; ?>
         </div>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
-require 'functions/form/core.php';
-require 'functions/html/generators.php';
+require '../functions/form/core.php';
+require '../functions/html/generators.php';
 $form = [
     'attr' => [
         'action' => 'index.php',
@@ -35,7 +35,7 @@ $form = [
                     'id' => 'last-name'
                 ]
             ],
-//            'error' => 'Paliktas tuÅ¡Ä?ias laukas!'
+//            'error' => 'Paliktas tuÅ¡ï¿½?ias laukas!'
             'validators' => [
                 'validate_not_empty',
             ]
@@ -51,7 +51,7 @@ $form = [
                     'id' => 'age'
                 ]
             ],
-//            'error' => 'Paliktas tuš?ias laukas!'
+//            'error' => 'Paliktas tuï¿½?ias laukas!'
             'validators' => [
                 'validate_not_empty',
                 'validate_is_number',
@@ -70,7 +70,7 @@ $form = [
                     'id' => 'email'
                 ]
             ],
-//            'error' => 'Paliktas tuÅ¡Ä?ias laukas!'
+//            'error' => 'Paliktas tuÅ¡ï¿½?ias laukas!'
             'validators' => [
                 'validate_not_empty',
                 'validate_is_email'
@@ -78,7 +78,7 @@ $form = [
         ],
         'wish' => [
             'type' => 'select',
-            'value' => 'car', //Ä?ia Ä¯raÅ¡ome 'option' indeksÄ…, by default bus tas selected
+            'value' => 'car', //ï¿½?ia Ä¯raÅ¡ome 'option' indeksÄ…, by default bus tas selected
             'label' => 'Kal?dom noriu:',
             'extra' => [
                 'attr' => [
@@ -103,10 +103,10 @@ $form = [
         ],
         'reset' => [
             'type' => 'reset',
-            'value' => 'Išvalyti'
+            'value' => 'Iï¿½valyti'
         ]
     ],
-    'message' => 'Užpildyk form?!',
+    'message' => 'Uï¿½pildyk form?!',
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'
@@ -132,15 +132,9 @@ if (!empty($filtered_input)) {
     <head>
         <meta charset="UTF-8">
         <title>Form Security</title>
-        <link rel="stylesheet" href="includes/style.css">
+        <link rel="stylesheet" href="../includes/style.css">
     </head>
     <body>
-<?php require 'templates/form.tpl.php'; ?>
-
-
-        
-
-
-
+<?php require '../templates/form.tpl.php'; ?>
     </body>
 </html>

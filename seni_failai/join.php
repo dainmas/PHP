@@ -1,8 +1,8 @@
 
 <?php
-require 'functions/form/core.php';
-require 'functions/html/generators.php';
-require 'functions/file.php';
+require '../functions/form/core.php';
+require '../functions/html/generators.php';
+require '../functions/file.php';
 
 session_start();
 
@@ -69,7 +69,7 @@ if (empty(get_options())) {
 
 function validate_player($field_input, &$field) {
     //komandų masyva is duonbazes gaunam:
-    $teams = file_to_array('data/teams.txt');
+    $teams = file_to_array('../data/teams.txt');
 
 
     foreach ($teams as $team) {
@@ -85,7 +85,7 @@ function validate_player($field_input, &$field) {
 }
 
 function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
-    $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+    $teams = file_to_array('../data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as &$team) {
         if ($team['team'] === $filtered_input['team']) {
@@ -96,7 +96,7 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
         }
     }
 
-    array_to_file($teams, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+    array_to_file($teams, '../data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
     //nustato cookie:
 //    var_dump($filtered_input);
     $_SESSION['cookie_team'] = $filtered_input['team'];
@@ -107,7 +107,7 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
 }
 
 function get_options() {
-    $teams = file_to_array('data/teams.txt');
+    $teams = file_to_array('../data/teams.txt');
 
     if (!empty($teams)) {
         foreach ($teams as $team) {
@@ -136,7 +136,7 @@ if (isset($_SESSION['cookie_nickname'])) {
     <head>
         <meta charset="UTF-8">
         <title>Žaidimas. Join</title>
-        <link rel="stylesheet" href="includes/style.css">
+        <link rel="stylesheet" href="../includes/style.css">
     </head>
     <body>
        <?php require 'navigation.php';?>
@@ -145,7 +145,7 @@ if (isset($_SESSION['cookie_nickname'])) {
             <h1 class="explode"><?php print $text; ?></h1>
         <?php else: ?>
             <div class="laukas">
-                <?php require 'templates/form.tpl.php'; ?>
+                <?php require '../templates/form.tpl.php'; ?>
             </div>
         <?php endif; ?>
         <footer>

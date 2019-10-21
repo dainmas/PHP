@@ -1,7 +1,7 @@
 <?php
-require 'functions/form/core.php';
-require 'functions/html/generators.php';
-require 'functions/file.php';
+require '../functions/form/core.php';
+require '../functions/html/generators.php';
+require '../functions/file.php';
 
 session_start();
 
@@ -34,7 +34,7 @@ $form = [
 function validate_kick($filtered_input, &$form) {
     var_dump("veikia");
 
-    $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+    $teams = file_to_array('../data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as $team) {
         foreach ($team['players'] as $player) {
@@ -63,7 +63,7 @@ function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildy
         }
     }
     unset($team);
-    array_to_file($teams, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+    array_to_file($teams, '../data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
     $form['message'] = "Spyris įskaitytas ({$player['score']})";
 }
 
@@ -79,14 +79,14 @@ $text = 'Go for it, ' . $_SESSION['cookie_nickname'];
     <head>
         <meta charset="UTF-8">
         <title>Žaidimas. Play</title>
-        <link rel="stylesheet" href="includes/style.css">
+        <link rel="stylesheet" href="../includes/style.css">
     </head>
     <body class="bg">
         <?php require 'navigation.php';?>
 
         <h1 class="text"><?php print $text; ?></h1>
         <div class="laukas">
-            <?php require 'templates/form.tpl.php'; ?>
+            <?php require '../templates/form.tpl.php'; ?>
         </div>
     </body>
 </html>

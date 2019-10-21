@@ -1,10 +1,11 @@
 <?php
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
+require 'functions/file.php';
 
 $form = [
     'attr' => [
-        'action' => 'index.php',
+//        'action' => 'index.php',
         'class' => 'bg-black'
     ],
     'title' => 'Registracijos forma',
@@ -17,10 +18,10 @@ $form = [
                 'attr' => [
                     'placeholder' => 'Enter your name',
                     'class' => 'input-text',
-                    'id' => 'first-name'
+                    'id' => 'full_name'
                 ]
             ],
-//            'error' => 'Vardas per trumpas!'
+
             'validators' => [
                 'validate_not_empty',
             ]
@@ -33,61 +34,56 @@ $form = [
                 'attr' => [
                     'placeholder' => 'Enter email',
                     'class' => 'input-text',
-                    'id' => 'last-name'
+                    'id' => 'email'
                 ]
             ],
-//            'error' => 'Paliktas tuÅ¡Ä?ias laukas!'
+
             'validators' => [
                 'validate_not_empty',
-                'validate_email',
-                'validate_email_unique'
+                'validate_is_email',
+//                'validate_email_unique'
             ]
         ],
         'password' => [
-            'type' => 'number',
+            'type' => 'password',
             'label' => 'Password*:',
             'value' => '',
             'extra' => [
                 'attr' => [
                     'placeholder' => 'Enter your password',
                     'class' => 'input-text',
-                    'id' => 'age'
+                    'id' => 'password'
                 ]
             ],
-//            'error' => 'Paliktas tuš?ias laukas!'
+
             'validators' => [
                 'validate_not_empty',
-                'validate_password', //8 enklai
-                'validate_is_email'
+                'validate_password', //8 Å¾enklai
             ]
         ],
         'password_repeat' => [
-            'type' => 'email',
-            'label' => 'Repeat_password*:',
+            'type' => 'password',
+            'label' => 'Repeat password*:',
             'value' => '',
             'extra' => [
                 'attr' => [
                     'placeholder' => 'Repeat your password',
                     'class' => 'input-text',
-                    'id' => 'email'
+                    'id' => 'password_repeat'
                 ]
             ],
-//            'error' => 'Paliktas tuÅ¡Ä?ias laukas!'
+
             'validators' => [
                 'validate_not_empty',
-                'validate_is_email'
             ]
         ],
     ],
     'buttons' => [
-        'register' => [
+        'Registruokis' => [
             'type' => 'submit',
-            'value' => 'Registruokis'
+            'value' => 'Registruokis',
+            'class' => 'Registruokis',
         ],
-//        'reset' => [
-//            'type' => 'reset',
-//            'value' => 'Išvalyti'
-//        ]
     ],
     'validators' => [
         'validate_fields_match' => [
@@ -95,7 +91,7 @@ $form = [
             'password_repeat' //
         ],
     ],
-    'message' => 'Upildyk form?!',
+    'message' => 'UÅ¾pildyk formÄ…!',
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'
@@ -106,16 +102,14 @@ function form_success($filtered_input, &$form) {
     $form['message'] = 'Success!';
 
     $users_array = file_to_array('data/users.txt');
-
     $filtered_input['users'] = [];
-
     $users_array[] = $filtered_input;
-
     array_to_file($users_array, 'data/users.txt');
+   
 }
 
 function form_fail($filtered_input, &$form) {
-    $form['message'] = 'Yra klaid?!';
+    $form['message'] = 'Yra klaidÅ³!';
 }
 
 $filtered_input = get_filtered_input($form);
@@ -130,9 +124,10 @@ if (!empty($filtered_input)) {
         <title>Form Registration</title>
         <link rel="stylesheet" href="includes/style.css">
     </head>
-    <body>
+    <body class="registracion-bg">
+         <?php require 'navigation.php';?>
         <div class="formos-fonas">
-            <?php require 'templates/form.tpl.php'; ?>
+            <div><?php require 'templates/form.tpl.php'; ?></div>>
         </div>
     </body>
 </html>
