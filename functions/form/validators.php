@@ -79,6 +79,18 @@ function validate_fields_match($filtered_input, &$form, $params) {
     }
 }
 
+function validate_email_unique($field_input, &$field) {
+    $users_array = file_to_array('data/users.txt');
+    foreach ($users_array as $user) {
+        if ($user['email'] === $field_input) {
+            $field['error'] = 'Toks naudotojas yra!';
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
 //function validate_email_unique($field_input, &$field) {
 //    if (substr(str_shuffle(str_repeat($chars, $length)), 0, $length)) {
 //        

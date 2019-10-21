@@ -41,7 +41,7 @@ $form = [
             'validators' => [
                 'validate_not_empty',
                 'validate_is_email',
-//                'validate_email_unique'
+                'validate_email_unique'
             ]
         ],
         'password' => [
