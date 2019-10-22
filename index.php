@@ -9,9 +9,9 @@ require 'functions/file.php';
 var_dump($_SESSION);
 
 if (isset($_SESSION['cookie_email'])) {
-    $text = 'Sveiki sugrįžę, ' . $_SESSION['cookie_user_name'];
+    $h1_text = 'Labas, ' . $_SESSION['cookie_user_name'];
 }else {
-    $text = 'Jūs neprisijungęs.';
+    $h1_text = 'Jūs neprisijungęs.';
 }
 
 ?>
@@ -23,8 +23,8 @@ if (isset($_SESSION['cookie_email'])) {
     </head>
     <body class="registracion-bg">
 <?php require 'navigation.php'; ?>
-        <h1><?php print $text; ?></h1>
-        <div><?php require 'templates/form.tpl.php'; ?></div>
+        <h1><?php print $h1_text; ?></h1>
+<!--        <div><?php require 'templates/form.tpl.php'; ?></div>-->
     </body>
 </html>
 

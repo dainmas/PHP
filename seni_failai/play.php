@@ -35,10 +35,10 @@ function validate_kick($filtered_input, &$form) {
     var_dump("veikia");
 
     $teams = file_to_array('../data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
-
+    var_dump($teams);
     foreach ($teams as $team) {
         foreach ($team['players'] as $player) {
-            if (strtoupper($player['nickname']) == strtoupper($_SESSION['cookie_nickname'])) {
+            if (strtoupper($player['nickname']) === strtoupper($_SESSION['cookie_nickname'])) {
                 return true;
             }
         }
@@ -48,8 +48,7 @@ function validate_kick($filtered_input, &$form) {
 }
 
 function form_success($filtered_input, &$form) { // vykdoma, jeigu forma uzpildyta teisingai
-    $teams = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
-
+    $teams = file_to_array('../data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
 
     foreach ($teams as &$team) {
         if ($team['team'] === $_SESSION['cookie_team']) {

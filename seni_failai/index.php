@@ -1,12 +1,14 @@
 <?php
 require '../functions/form/core.php';
 require '../functions/html/generators.php';
+require '../functions/html/file.php';
+
 $form = [
     'attr' => [
         'action' => 'index.php',
         'class' => 'bg-black'
     ],
-    'title' => 'Kal?d? norai',
+    'title' => 'Kalėdų norai',
     'fields' => [
         'first_name' => [
             'type' => 'text',
@@ -27,7 +29,7 @@ $form = [
         'last_name' => [
             'type' => 'text',
             'value' => '',
-            'label' => 'Pavard?:',
+            'label' => 'Pavardė:',
             'extra' => [
                 'attr' => [
                     'placeholder' => 'Enter your last name',
@@ -79,7 +81,7 @@ $form = [
         'wish' => [
             'type' => 'select',
             'value' => 'car', //�?ia įrašome 'option' indeksą, by default bus tas selected
-            'label' => 'Kal?dom noriu:',
+            'label' => 'Kalėdom noriu:',
             'extra' => [
                 'attr' => [
                     'class' => 'input-select',
@@ -89,7 +91,7 @@ $form = [
             'options' => [
                 'car' => 'BMW',
                 'tv' => 'Teliko',
-                'socks' => 'Kojini?'
+                'socks' => 'Kojinių'
             ],
             'validators' => [
                 'validate_not_empty',
@@ -103,10 +105,10 @@ $form = [
         ],
         'reset' => [
             'type' => 'reset',
-            'value' => 'I�valyti'
+            'value' => 'Išvalyti'
         ]
     ],
-    'message' => 'U�pildyk form?!',
+    'message' => 'Užpildyk formą!',
     'callbacks' => [
         'success' => 'form_success',
         'fail' => 'form_fail'
